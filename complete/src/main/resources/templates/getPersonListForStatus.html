@@ -1,21 +1,33 @@
-<!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<!DOCTYPE html>
+<html>
     <head>
-        <meta charset="UTF-8" />
-        <title>Liste aller Personen mit einem bestimmten Status zurückgeben</title>
-        <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+        <title>Personenliste nach Status</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        <h1>Liste aller Personen mit einem bestimmten Status zurückgeben</h1>
-        <br/><br/>
-        <div>
-            <form th:action="@{/getPersonListForStatus}"
-                  th:object="${PersonEntity}" method="GET">
-                Name vom Status
-                <input type="string" th:field="*{statusName}" />    
-                <br/>
-                <input type="submit" value="Suchen" />
-            </form>
+        <h1>Personenliste nach Status</h1>
+        <br/>
+        <div class="panel panel-default">
+            <div class="panel-heading"><b>Personenliste nach Status</b></div>
+            <div class="panel-body">
+                <table border="1">
+                    <tr>
+                        <th>ID</th>
+                        <th>Vorname</th>
+                        <th>Nachname</th>
+                        <th>Geschlecht</th>
+                        <th>Geburstag</th>
+                    </tr>
+                    <tr th:each ="person : ${personListe}">
+                        <td th:utext="${person.localPersonId}">...</td>
+                        <td th:utext="${person.firstName}">...</td>
+                        <td th:utext="${person.officialName}">...</td>
+                        <td th:utext="${person.sex}">...</td>
+                        <td th:utext="${person.dateOfBirth}">...</td>
+                    </tr>
+                </table>
+            </div>
         </div>
     </body>
 </html>

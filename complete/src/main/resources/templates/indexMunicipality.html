@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Municipality Administration</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <h1>Gemindenverwaltung</h1>
+    <body>
+        <a th:href="@{/addMunicipality}" class="btn btn-default">Gemeinde hinzufügen</a>  
+        <br>
+        <a th:href="@{/deleteMunicipality}" class="btn btn-default">Gemeinde löschen</a> 
+        <br>
+        <a th:href="@{/getMunicipalityByName}" class="btn btn-default">Suche Gemeinde nach Name</a> 
+        <br>
+        <a th:href="@{/renameMunicipality}" class="btn btn-default">Gemeinde umbenennen</a>  
+        <br>
+        <a th:href="@{/newFee}" class="btn btn-default">Gebühr ändern</a>  
+        <br>
+        <a th:href="@{/newFeeIn}" class="btn btn-default">Zuzugsgebühr ändern</a>  
+        <br>
+        <a th:href="@{/newFeeOut}" class="btn btn-default">Wegzugsgebühr ändern</a>
+        <br>
+        <div class="panel panel-default">
+            <div class="panel-heading"><b>Gemeinden</b></div>
+            <div class="panel-body">
+                <table border="1">
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                    </tr>
+                    <tr th:each ="municipality : ${municipalityListe}">
+                        <td th:utext="${municipality.municipalityId}">...</td>
+                        <td th:utext="${municipality.municipalityName}">...</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </body>
+</html>

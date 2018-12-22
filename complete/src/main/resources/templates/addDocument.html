@@ -14,9 +14,9 @@
          -->
           
       <form th:action="@{/addDocument}"
-         th:object="${DocumentEntity}" method="POST">
+         th:object="${document}" method="POST">
          
-         <input type="file" th:field="*{dokument}" />    
+         <input type="file" th:field="*{document}" />    
          <br/>
          <input type="submit" value="Add" />
       </form>

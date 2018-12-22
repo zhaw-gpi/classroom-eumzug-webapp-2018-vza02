@@ -2,21 +2,14 @@
 <html xmlns:th="http://www.thymeleaf.org">
     <head>
         <meta charset="UTF-8" />
-        <title>Delete Document</title>
+        <title>Dokument löschen</title>
     </head>
     <body>
-        <h1>Delete a Document</h1>
-
-        <!--  
-           In Thymeleaf the equivalent of
-           JSP's ${pageContext.request.contextPath}/edit.html
-           would be @{/edit.html}         
-        -->
-
+        <h1>Dokument löschen</h1>
         <form th:action="@{/deleteDocument}"
-              th:object="${DocumentEntity}" method="POST">
+              th:object="${document}" method="POST">
             ID:
-            <input type="Integer" th:field="*{Id}" />    
+            <input type="Integer" th:field="*{id}" />    
             <br/>
             <input type="submit" value="Delete" />
         </form>

@@ -2,20 +2,18 @@
 <html xmlns:th="http://www.thymeleaf.org">
     <head>
         <meta charset="UTF-8" />
-        <title>Wegzuggebühr ändern</title>
-        <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+        <title>Neue Wegzugsgebühr</title>
     </head>
     <body>
-        <h1>Wegzuggebühr ändern</h1>
-        <a href="addMunicipality">Add Gemeinde</a>
-        <br/><br/>
+        <h1>Neue Wegzugsgebühr</h1>
+        <br/>
         <div>
             <form th:action="@{/newFeeOut}"
-                  th:object="${MunicipalityEntity}" method="POST">
-                Wegzuggebühr ändern:
+                  th:object="${municiapality}" method="POST">
+                Neue Gebühr:
                 <input type="Integer" th:field="*{Id}" />    
                 <br/>
-                <input type="Integer" th:field="*{Gebuehr}" />    
+                <input type="Integer" th:field="*{gebuehr}" />    
                 <br/>
                 <input type="submit" value="Ändern" />
             </form>

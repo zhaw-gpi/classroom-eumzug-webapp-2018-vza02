@@ -3,15 +3,13 @@
     <head>
         <meta charset="UTF-8" />
         <title>Dokumenten unbenennen</title>
-        <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
     </head>
     <body>
         <h1>Dokumenten unbenennen</h1>
-        <a href="addDocument">Add Document</a>
-        <br/><br/>
+        <br/>
         <div>
             <form th:action="@{/renameDocument}"
-                  th:object="${DocumentEntity}" method="POST">
+                  th:object="${document}" method="POST">
                 Dokument unbennenen:
                 <input type="Integer" th:field="*{Id}" />    
                 <br/>

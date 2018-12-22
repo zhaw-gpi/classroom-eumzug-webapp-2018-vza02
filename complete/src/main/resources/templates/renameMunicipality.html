@@ -11,8 +11,8 @@
         <br/><br/>
         <div>
             <form th:action="@{/renameMunicipality}"
-                  th:object="${MunicipalityEntity}" method="POST">
-                Gemeinde unbennenen:
+                  th:object="${municipality}" method="POST">
+                Gemeinde unbennenen
                 <input type="Integer" th:field="*{Id}" />    
                 <br/>
                 <input type="String" th:field="*{name}" />    

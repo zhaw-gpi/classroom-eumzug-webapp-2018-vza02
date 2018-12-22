@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Dokumentenverwaltung</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <a th:href="@{/addDocument}" class="btn btn-default">Dokument hinzufügen</a> 
+        <br>
+        <a th:href="@{/deleteDocument}" class="btn btn-default">Dokument löschen</a> 
+        <br>
+        <a th:href="@{/getDocumentByName}" class="btn btn-default">Suche Dokument nach Name</a> 
+        <br>
+        <a th:href="@{/renameDocument}" class="btn btn-default">Dokument umbenennen</a>  
+        <br>
+        <div class="panel panel-default">
+            <div class="panel-heading"><b>Dokumente</b></div>
+            <div class="panel-body">
+                <table border="1">
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                    </tr>
+                    <tr th:each ="document : ${documentListe}">
+                        <td th:utext="${document.documentId}">...</td>
+                        <td th:utext="${document.name}">...</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </body>
+</html>

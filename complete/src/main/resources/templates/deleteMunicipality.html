@@ -2,19 +2,12 @@
 <html xmlns:th="http://www.thymeleaf.org">
     <head>
         <meta charset="UTF-8" />
-        <title>Delete Gemeinde</title>
+        <title>Gemeinde löschen</title>
     </head>
     <body>
-        <h1>Delete a Municipality</h1>
-
-        <!--  
-           In Thymeleaf the equivalent of
-           JSP's ${pageContext.request.contextPath}/edit.html
-           would be @{/edit.html}         
-        -->
-
+        <h1>Gemeinde löschen</h1>
         <form th:action="@{/deleteMunicipality}"
-              th:object="${MunicipalityEntity}" method="POST">
+              th:object="${municipality}" method="POST">
             ID:
             <input type="Integer" th:field="*{Id}" />    
             <br/>

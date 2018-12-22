@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <link rel="stylesheet" href="style.css" type="text/css"/>
+
+        <title>Transaction Log Verwaltung</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div class="panel panel-default">
+            <div class="panel-heading"><b>Statuseinträge</b></div>
+            <a th:href="@{/getPersonListForStatus}" class="btn btn-default">Personenliste für einen Status</a>  
+            <a th:href="@{/getCurrentStatusForPerson}" class="btn btn-default">Aktueller Status für eine Person</a> 
+        </div>
+    </body>
+</html>
