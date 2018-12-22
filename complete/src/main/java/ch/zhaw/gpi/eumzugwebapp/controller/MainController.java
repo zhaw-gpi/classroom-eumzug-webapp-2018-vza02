@@ -34,7 +34,7 @@ public class MainController {
     public String getDocumentList(Model model) {
 
         List<Document> documentListe = eUmzugClientService.getDocumentList();
-        model.addAttribute("documentListe", eUmzugClientService);
+        model.addAttribute("documentListe", documentListe);
 
         return "indexDocument";
     }
@@ -102,15 +102,16 @@ public class MainController {
 
         Municipality municipality = new Municipality();
         model.addAttribute("municipality", municipality);
-
+        
         return "addMunicipality";
     }
 
     @RequestMapping(value = {"/addMunicipality"}, method = RequestMethod.POST)
     public String saveMunicipality(Model model, @ModelAttribute("municipality") Municipality municipality) {
 
+        municipality.setMunicipalityDocumentRelationEntities(null);
         eUmzugClientService.addMunicipality(municipality);
-
+        
         return "redirect:/getMunicipalityList";
 
     }
