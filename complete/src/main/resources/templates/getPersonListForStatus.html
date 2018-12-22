@@ -1,0 +1,21 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Liste aller Personen mit einem bestimmten Status zurückgeben</title>
+        <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+    </head>
+    <body>
+        <h1>Liste aller Personen mit einem bestimmten Status zurückgeben</h1>
+        <br/><br/>
+        <div>
+            <form th:action="@{/getPersonListForStatus}"
+                  th:object="${PersonEntity}" method="GET">
+                Name vom Status
+                <input type="string" th:field="*{statusName}" />    
+                <br/>
+                <input type="submit" value="Suchen" />
+            </form>
+        </div>
+    </body>
+</html>

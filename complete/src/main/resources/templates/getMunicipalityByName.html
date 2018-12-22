@@ -1,0 +1,34 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Gemeinde suchen</title>
+        <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+    </head>
+    <body>
+        <h1>Gemeinde suchen</h1>
+        <a href="addMunicipality">Add Municpality</a>
+        <br/><br/>
+        <div>
+            <form th:action="@{/getMunicipalityByName}"
+                  th:object="${MunicipalityEntity}" method="GET">
+                Name der Gemeinde
+                <input type="string" th:field="*{gemeindeName}" />    
+                <br/>
+                <input type="submit" value="Suchen" />
+            </form>
+        </div>
+        <div>
+            <table border="1">
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                </tr>
+                <tr th:each ="muni : ${municipality}">
+                    <td th:utext="${muni.municipalityId}">...</td>
+                    <td th:utext="${muni.municipalityName}">...</td>
+                </tr>
+            </table>
+        </div>
+    </body>
+</html>

@@ -45,7 +45,7 @@ public class MainController {
         return "personList";
     }
  
-    @RequestMapping(value = { "/addPerson" }, method = RequestMethod.GET)
+    @RequestMapping(value = { "/", "/addPerson" }, method = RequestMethod.GET)
     public String showAddPersonPage(Model model) {
  
         PersonForm personForm = new PersonForm();

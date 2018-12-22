@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+   <head>
+      <meta charset="UTF-8" />
+      <title>Gemeinde Liste</title>
+      <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+   </head>
+   <body>
+      <h1>Gemeinde Liste</h1>
+      <a href="addMunicipality">Add Gemeinde</a>
+      <br/><br/>
+      <div>
+            <table border="1">
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                </tr>
+                <tr th:each ="muni : ${municipality}">
+                    <td th:utext="${muni.municipalityId}">...</td>
+                    <td th:utext="${muni.municipalityName}">...</td>
+                </tr>
+            </table>
+      </div>
+   </body>
+</html>

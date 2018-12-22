@@ -1,0 +1,24 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Neue Gebühr</title>
+        <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+    </head>
+    <body>
+        <h1>Neue Gebühr</h1>
+        <a href="addMunicipality">Add Gemeinde</a>
+        <br/><br/>
+        <div>
+            <form th:action="@{/newFee}"
+                  th:object="${MunicipalityEntity}" method="POST">
+                Neue Gebühr:
+                <input type="Integer" th:field="*{Id}" />    
+                <br/>
+                <input type="Integer" th:field="*{Gebuehr}" />    
+                <br/>
+                <input type="submit" value="Hinzufügen" />
+            </form>
+        </div>
+    </body>
+</html>

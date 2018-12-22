@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+   <head>
+      <meta charset="UTF-8" />
+      <title>Dokumenten Liste</title>
+      <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+   </head>
+   <body>
+      <h1>Dokumenten Liste</h1>
+      <a href="addDocument">Add Document</a>
+      <br/><br/>
+      <div>
+         <table border="1">
+            <tr>
+               <th>ID</th>
+               <th>Name</th>
+            </tr>
+            <tr th:each ="document : ${documents}">
+               <td th:utext="${document.documentId}">...</td>
+               <td th:utext="${document.name}">...</td>
+            </tr>
+         </table>
+      </div>
+   </body>
+</html>

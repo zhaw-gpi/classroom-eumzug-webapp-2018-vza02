@@ -2,10 +2,10 @@
 <html xmlns:th="http://www.thymeleaf.org">
    <head>
       <meta charset="UTF-8" />
-      <title>Add Person</title>
+      <title>Add Document</title>
    </head>
    <body>
-      <h1>Create a Person:</h1>
+      <h1>Add a Document</h1>
        
       <!--  
          In Thymeleaf the equivalent of
@@ -13,15 +13,12 @@
          would be @{/edit.html}         
          -->
           
-      <form th:action="@{/addPerson}"
-         th:object="${personForm}" method="POST">
-         First Name:
-         <input type="text" th:field="*{firstName}" />    
+      <form th:action="@{/addDocument}"
+         th:object="${DocumentEntity}" method="POST">
+         
+         <input type="file" th:field="*{dokument}" />    
          <br/>
-         Last Name:
-         <input type="text" th:field="*{lastName}" />     
-         <br/>
-         <input type="submit" value="Create" />
+         <input type="submit" value="Add" />
       </form>
        
       <br/>
@@ -30,7 +27,6 @@
        
       <div th:if="${errorMessage}" th:utext="${errorMessage}"
          style="color:red;font-style:italic;">
-         ...
       </div>
        
    </body>

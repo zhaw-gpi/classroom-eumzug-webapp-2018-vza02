@@ -1,0 +1,34 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Dokument suchen</title>
+        <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+    </head>
+    <body>
+        <h1>okument suchen</h1>
+        <a href="addDocument">Add Document</a>
+        <br/><br/>
+        <div>
+            <form th:action="@{/getDocumentByName}"
+                  th:object="${DocumentEntity}" method="GET">
+                Name vom Dokument:
+                <input type="string" th:field="*{name}" />    
+                <br/>
+                <input type="submit" value="Suchen" />
+            </form>
+        </div>
+        <div>
+            <table border="1">
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                </tr>
+                <tr th:each ="document : ${documents}">
+                    <td th:utext="${document.documentId}">...</td>
+                    <td th:utext="${document.name}">...</td>
+                </tr>
+            </table>
+        </div>
+    </body>
+</html>
