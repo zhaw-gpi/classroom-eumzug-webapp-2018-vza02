@@ -7,6 +7,7 @@
     <body>
         <h1>Dokument suchen</h1>
         <br/>
+        <a th:href="@{/indexDocument}" class="btn btn-default">Zurück</a>  
         <div>
             <form th:action="@{/getDocumentByName}"
                   th:object="${document}" method="GET">

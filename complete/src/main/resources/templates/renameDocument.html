@@ -7,6 +7,7 @@
     <body>
         <h1>Dokumenten unbenennen</h1>
         <br/>
+        <a th:href="@{/indexDocument}" class="btn btn-default">Zurück</a>  
         <div>
             <form th:action="@{/renameDocument}"
                   th:object="${document}" method="POST">

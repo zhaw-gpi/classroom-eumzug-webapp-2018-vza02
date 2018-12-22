@@ -12,7 +12,7 @@
             <form th:action="@{/getCurrentStatusForPerson}"
                   th:object="${transactionLog}" method="POST">
                 Name:
-                <input type="Integer" th:field="*{localPersonId}" />     
+                <input type="text" th:field="*{localPersonId}" />     
                 <br/>
                 <input type="submit" value="Ändern" />
             </form>

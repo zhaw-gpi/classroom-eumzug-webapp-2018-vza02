@@ -6,6 +6,8 @@
     </head>
     <body>
         <h1>Add a Municipality</h1>
+        <br>
+        <a th:href="@{/indexMunicipality}" class="btn btn-default">Zurück</a>  
         <form th:action="@{/addMunicipality}"
               th:object="${municipality}" method="POST">
             ID:

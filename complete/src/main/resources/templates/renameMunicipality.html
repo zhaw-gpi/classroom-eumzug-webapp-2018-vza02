@@ -7,15 +7,16 @@
     </head>
     <body>
         <h1>Gemeinde unbenennen</h1>
-        <a href="addMunicipality">Add Gemeinde</a>
-        <br/><br/>
+        <br>
+        <a th:href="@{/indexMunicipality}" class="btn btn-default">Zurück</a> 
+        <br/>
         <div>
             <form th:action="@{/renameMunicipality}"
                   th:object="${municipality}" method="POST">
                 Gemeinde unbennenen
-                <input type="Integer" th:field="*{Id}" />    
+                <input type="text" th:field="*{Id}" />    
                 <br/>
-                <input type="String" th:field="*{name}" />    
+                <input type="text" th:field="*{name}" />    
                 <br/>
                 <input type="submit" value="Unbennenen" />
             </form>

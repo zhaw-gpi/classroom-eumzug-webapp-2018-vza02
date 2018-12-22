@@ -6,7 +6,9 @@
     </head>
     <body>
         <h1>Neue Gebühr</h1>
-        <br/>
+        <br>
+        <a th:href="@{/indexMunicipality}" class="btn btn-default">Zurück</a> 
+
         <div>
             <form th:action="@{/newFee}"
                   th:object="${municiapality}" method="POST">

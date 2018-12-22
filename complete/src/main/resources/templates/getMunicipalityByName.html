@@ -6,12 +6,13 @@
     </head>
     <body>
         <h1>Gemeinde suchen</h1>
-        <br/>
+        <br>
+        <a th:href="@{/indexMunicipality}" class="btn btn-default">Zurück</a> 
         <div>
             <form th:action="@{/getMunicipalityByName}"
                   th:object="${municipality}" method="GET">
                 Name der Gemeinde
-                <input type="string" th:field="*{name}" />    
+                <input type="text" th:field="*{municipalityName}" />    
                 <br/>
                 <input type="submit" value="Suchen" />
             </form>

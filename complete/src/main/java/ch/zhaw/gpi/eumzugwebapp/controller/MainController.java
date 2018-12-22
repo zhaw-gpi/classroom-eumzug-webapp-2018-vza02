@@ -4,6 +4,8 @@ import java.util.List;
 
 import ch.zhaw.gpi.eumzugwebapp.resources.Municipality;
 import ch.zhaw.gpi.eumzugwebapp.resources.Document;
+import ch.zhaw.gpi.eumzugwebapp.resources.MunicipalityDocumentRelation;
+import ch.zhaw.gpi.eumzugwebapp.resources.TransactionLog;
 import ch.zhaw.gpi.eumzugwebapp.services.EUmzugClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -52,7 +54,7 @@ public class MainController {
 
         eUmzugClientService.addDocument(document);
 
-        return "redirect:/getDocumentList";
+        return "redirect:/indexDocument";
 
     }
 
@@ -61,7 +63,7 @@ public class MainController {
 
         eUmzugClientService.deleteDocument(id);
 
-        return "redirect:/getDocumentList";
+        return "redirect:/indexDocument";
 
     }
 
@@ -70,7 +72,7 @@ public class MainController {
 
         eUmzugClientService.getDocumentByName(name);
 
-        return "getDocumentList";
+        return "indexDocument";
     }
 
     @RequestMapping(value = {"/renameDocument"}, method = RequestMethod.POST)
@@ -78,7 +80,7 @@ public class MainController {
 
         eUmzugClientService.renameDocument(Id, name);
 
-        return "redirect:/getDocumentList";
+        return "redirect:/indexDocument";
 
     }
 
@@ -113,20 +115,20 @@ public class MainController {
     }
 
     @RequestMapping(value = {"/deleteMunicipality"}, method = RequestMethod.POST)
-    public String deleteMunicipality(Model model, @ModelAttribute("id") int Id) {
-
+    public String deleteMunicipality(Model model, @ModelAttribute("Id") int Id) {
+        
         eUmzugClientService.deleteMunicipality(Id);
-
+        
         return "redirect:/indexMunicipality";
 
     }
 
     @RequestMapping(value = {"/getMunicipalityByName"}, method = RequestMethod.GET)
-    public String getMunicipalityByName(Model model, @ModelAttribute("municipality") String name) {
+    public String getMunicipalityByName(Model model, @ModelAttribute("municipality") String municipalityName) {
 
-        eUmzugClientService.getMunicipalityByName(name);
+        eUmzugClientService.getMunicipalityByName(municipalityName);
 
-        return "getDocumentList";
+        return "indexMunicipality";
     }
 
     @RequestMapping(value = {"/renameMunicipality"}, method = RequestMethod.POST)
@@ -134,7 +136,7 @@ public class MainController {
 
         eUmzugClientService.renameMunicipality(Id, name);
 
-        return "redirect:/getDocumentList";
+        return "redirect:/indexMunicipality";
 
     }
 
@@ -143,7 +145,7 @@ public class MainController {
 
         eUmzugClientService.newFee(Id, gebuehr);
 
-        return "redirect:/getDocumentList";
+        return "redirect:/indexMunicipality";
 
     }
 
@@ -152,7 +154,7 @@ public class MainController {
 
         eUmzugClientService.newFeeIn(Id, gebuehr);
 
-        return "redirect:/getDocumentList";
+        return "redirect:/indexMunicipality";
 
     }
 
@@ -161,19 +163,26 @@ public class MainController {
 
         eUmzugClientService.newFeeOut(Id, gebuehr);
 
-        return "redirect:/getDocumentList";
+        return "redirect:/indexMunicipality";
 
     }
 
 // ----------------------------------------------------------------------------------------------------------//
 // --------------------------------------------TransactionLog------------------------------------------------//
 // ----------------------------------------------------------------------------------------------------------//
+       //Dokumentenliste
+    @RequestMapping(value = {"/indexTransactionLog"}, method = RequestMethod.GET)
+    public String getTransactionLog(Model model) {
+
+        return "indexTransactionLog";
+    }
+   
     @RequestMapping(value = {"/getPersonListForStatus"}, method = RequestMethod.GET)
     public String getPersonListForStatus(Model model, @ModelAttribute("localPersonId") String localPersonId) {
 
         eUmzugClientService.getPersonListForStatus(localPersonId);
 
-        return "getPersonListForStatus";
+        return "redirect:/indexTransactionLog";
     }
 
     @RequestMapping(value = {"/getCurrentStatusForPerson"}, method = RequestMethod.GET)
@@ -181,7 +190,7 @@ public class MainController {
 
         eUmzugClientService.getCurrentStatusForPerson(localPersonId);
 
-        return "getCurrentStatusForPerson";
+        return "redirect:/indexTransactionLog";
     }
 
 }

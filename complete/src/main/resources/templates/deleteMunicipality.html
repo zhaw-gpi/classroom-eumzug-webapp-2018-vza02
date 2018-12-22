@@ -6,6 +6,9 @@
     </head>
     <body>
         <h1>Gemeinde löschen</h1>
+        <br>
+        <a th:href="@{/indexMunicipality}" class="btn btn-default">Zurück</a> 
+        <br>
         <form th:action="@{/deleteMunicipality}"
               th:object="${municipality}" method="POST">
             ID:
