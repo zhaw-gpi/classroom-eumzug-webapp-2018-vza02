@@ -6,6 +6,7 @@ import ch.zhaw.gpi.eumzugwebapp.resources.Municipality;
 import ch.zhaw.gpi.eumzugwebapp.resources.Document;
 import ch.zhaw.gpi.eumzugwebapp.services.EUmzugClientService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -20,9 +21,6 @@ public class MainController {
 
     @RequestMapping(value = {"/", "/index"}, method = RequestMethod.GET)
     public String index(Model model) {
-
-        model.addAttribute("message", "TEST");
-
         return "index";
     }
 // ----------------------------------------------------------------------------------------------------------//
@@ -102,18 +100,16 @@ public class MainController {
 
         Municipality municipality = new Municipality();
         model.addAttribute("municipality", municipality);
-        
+
         return "addMunicipality";
     }
 
     @RequestMapping(value = {"/addMunicipality"}, method = RequestMethod.POST)
     public String saveMunicipality(Model model, @ModelAttribute("municipality") Municipality municipality) {
 
-        municipality.setMunicipalityDocumentRelationEntities(null);
         eUmzugClientService.addMunicipality(municipality);
-        
-        return "redirect:/getMunicipalityList";
 
+        return "redirect:/indexMunicipality";
     }
 
     @RequestMapping(value = {"/deleteMunicipality"}, method = RequestMethod.POST)
@@ -121,7 +117,7 @@ public class MainController {
 
         eUmzugClientService.deleteMunicipality(Id);
 
-        return "redirect:/getMunicipalityList";
+        return "redirect:/indexMunicipality";
 
     }
 
