@@ -14,11 +14,14 @@
          -->
           
       <form th:action="@{/addMunicipality}"
-         th:object="${MunicipalityEntity}" method="POST">
-         Gemeinde:
-         <input type="object" th:field="*{gemeinde}" />    
+         th:object="${municipality}" method="POST">
+         First Name:
+         <input type="text" th:field="*{municipalityId}" />    
          <br/>
-         <input type="submit" value="Add" />
+         Last Name:
+         <input type="text" th:field="*{municipalityName}" />     
+         <br/>
+         <input type="submit" value="Create" />
       </form>
        
       <br/>

@@ -15,7 +15,7 @@
                     <th>ID</th>
                     <th>Name</th>
                 </tr>
-                <tr th:each ="muni : ${municipality}">
+                <tr th:each ="muni : ${municipalityListe}">
                     <td th:utext="${muni.municipalityId}">...</td>
                     <td th:utext="${muni.municipalityName}">...</td>
                 </tr>

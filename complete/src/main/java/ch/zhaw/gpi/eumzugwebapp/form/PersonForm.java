@@ -1,18 +1,10 @@
-package org.o7planning.thymeleaf.model;
+package ch.zhaw.gpi.eumzugwebapp.form;
+  
  
-public class Person {
+public class PersonForm {
  
     private String firstName;
     private String lastName;
- 
-    public Person() {
- 
-    }
- 
-    public Person(String firstName, String lastName) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-    }
  
     public String getFirstName() {
         return firstName;
@@ -29,5 +21,5 @@ public class Person {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
- 
+     
 }
