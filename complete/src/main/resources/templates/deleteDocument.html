@@ -16,7 +16,7 @@
         <form th:action="@{/deleteDocument}"
               th:object="${document}" method="POST">
             ID:
-            <input type="Integer" th:field="*{documentId}" />    
+            <input type="text" th:field="*{documentId}" />    
             <br/>
             <br/>
             <input type="submit" value="Löschen" />

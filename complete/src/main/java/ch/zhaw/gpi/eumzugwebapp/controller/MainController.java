@@ -80,7 +80,7 @@ public class MainController {
      * @param model
      * @return 
      */
-    @RequestMapping(value = {"/", "/deleteDocument"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/deleteDocument"}, method = RequestMethod.GET)
     public String showDeleteDocumentPage(Model model) {
 
         Document document = new Document();
@@ -88,7 +88,7 @@ public class MainController {
 
         return "deleteDocument";
     }
-
+    
     /**
      * 
      * @param model

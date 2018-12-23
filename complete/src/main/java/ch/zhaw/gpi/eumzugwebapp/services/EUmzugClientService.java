@@ -103,7 +103,7 @@ public class EUmzugClientService {
      * @param name
      */
     public void renameDocument(int Id, String name) {
-        restTemplate.put(eUmzugClientServiceEndpoint + "/dokumente/{Id}/{name}", Id, name);
+        restTemplate.put(eUmzugClientServiceEndpoint + "/dokumente/{Id}/{name}", "", Id, name);
     }
 
     /**
@@ -112,8 +112,10 @@ public class EUmzugClientService {
      * @param Id
      */
     public void deleteDocument(int Id) {
-        restTemplate.put(eUmzugClientServiceEndpoint + "/dokumente/{Id}", Id);
+        restTemplate.delete(eUmzugClientServiceEndpoint + "/dokumente/{Id}", Id);
     }
+    
+   
 
     //TRANSACTIONLOGS 
     /**
@@ -225,7 +227,7 @@ public class EUmzugClientService {
      */
     public void renameMunicipality(int Id, String name) {
         //sendet über eine PUT-Anfrage an eumzugapi/v1//dokumente/{Id}/{name}
-        restTemplate.put(eUmzugClientServiceEndpoint + "/gemeinden/{Id}/{name}", Id, name);
+        restTemplate.put(eUmzugClientServiceEndpoint + "/gemeinden/{Id}/{name}", "", Id, name);
     }
 
     /**
@@ -234,7 +236,8 @@ public class EUmzugClientService {
      */
     public void deleteMunicipality(int Id) {
         //sendet über eine PUT-Anfrage an eumzugapi/v1//gemeinde/{Id}/{name}
-        restTemplate.put(eUmzugClientServiceEndpoint + "/gemeinden/{Id}", Id);
+      //  restTemplate.put(eUmzugClientServiceEndpoint + "/gemeinden/{Id}","", Id);
+        restTemplate.delete(eUmzugClientServiceEndpoint + "/gemeinden/{Id}", Id);
     }
 
     /**
@@ -244,7 +247,7 @@ public class EUmzugClientService {
      */
     public void newFee(int id, int gebuehr) {
         //Sendet über eine PUT-Anfrage an eumzugapi/v1/gemeinde/gemeinde Dabei wird keine Antwort der API-Methode ausgelesen. 
-        restTemplate.put(eUmzugClientServiceEndpoint + "/gemeinden/{id}/move/{Gebuehr}", id, gebuehr);
+        restTemplate.put(eUmzugClientServiceEndpoint + "/gemeinden/{id}/move/{Gebuehr}", "",id, gebuehr);
     }
 
     /**
@@ -254,7 +257,7 @@ public class EUmzugClientService {
      */
     public void newFeeIn(int id, int gebuehr) {
         //Sendet über eine PUT-Anfrage an eumzugapi/v1/gemeinde/gemeinde Dabei wird keine Antwort der API-Methode ausgelesen. 
-        restTemplate.put(eUmzugClientServiceEndpoint + "/gemeinden/{id}/movein/{Gebuehr}", id, gebuehr);
+        restTemplate.put(eUmzugClientServiceEndpoint + "/gemeinden/{id}/movein/{Gebuehr}", "", id, gebuehr);
     }
 
     /**
@@ -264,6 +267,6 @@ public class EUmzugClientService {
      */
     public void newFeeOut(int id, int gebuehr) {
         //Sendet über eine PUT-Anfrage an eumzugapi/v1/gemeinde/gemeinde Dabei wird keine Antwort der API-Methode ausgelesen. 
-        restTemplate.put(eUmzugClientServiceEndpoint + "/gemeinden/{id}/moveout/{Gebuehr}", id, gebuehr);
+        restTemplate.put(eUmzugClientServiceEndpoint + "/gemeinden/{id}/moveout/{Gebuehr}", "", id, gebuehr);
     }
 }

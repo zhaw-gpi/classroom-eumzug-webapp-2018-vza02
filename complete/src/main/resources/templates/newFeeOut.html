@@ -14,10 +14,10 @@
             <form th:action="@{/newFeeOut}"
                   th:object="${municipality}" method="POST">
                 Gemeiden ID:
-                <input type="Integer" th:field="*{municipalityId}" />    
+                <input type="text" th:field="*{municipalityId}" />    
                 <br/>
                 Neue Wegzugsgebühr:
-                <input type="Integer" th:field="*{feeMoveOut}" />  
+                <input type="text" th:field="*{feeMoveOut}" />  
                 <br/>
                 <br>
                 <input type="submit" value="Ändern" />
