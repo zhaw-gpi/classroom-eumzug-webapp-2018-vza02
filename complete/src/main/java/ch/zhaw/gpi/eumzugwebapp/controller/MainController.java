@@ -256,7 +256,7 @@ public class MainController {
      * @param model Wird automatisch von Spring mitgegeben
      * @return Laden der View
      */
-    @RequestMapping(value = {"/getMunicipalityByName"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/getMunicipalityByName"}, method = RequestMethod.GET)//Mappt die Funktion mit dem URL Aufruf
     public String showGetMunicipalityByNamePage(Model model) {
 
         Municipality municipality = new Municipality();//Erstellung von leeren Gemeinde Attriut
@@ -271,7 +271,7 @@ public class MainController {
      * @param municipality Wird automatisch von Spring mitgegeben
      * @return Laden der View
      */
-    @RequestMapping(value = {"/getMunicipalityByName"}, method = RequestMethod.POST)
+    @RequestMapping(value = {"/getMunicipalityByName"}, method = RequestMethod.POST)//Mappt die Funktion mit dem Absenden eines Forulars
     public String getMunicipalityByName(Model model, @ModelAttribute("municipality") Municipality municipality) {
 
         Municipality newMunicipality = eUmzugClientService.getMunicipalityByName(municipality.getMunicipalityName());//BITTE KOMMENTIEREN
@@ -311,92 +311,92 @@ public class MainController {
     }
 
     /**
-     * Neue Gebühr
-     * @param model
-     * @return 
+     * Umzugsgebühr anzeigen
+     * @param model Wird automatisch von Spring mitgegeben
+     * @return Laden der angegebenen View "newFee"
      */
-    @RequestMapping(value = {"/newFee"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/newFee"}, method = RequestMethod.GET)//Mappt die Funktion mit dem URL Aufruf
     public String showNewFeePage(Model model) {
 
-        Municipality getFeeMove = new Municipality();
-        model.addAttribute("municipality", getFeeMove);
+        Municipality getFeeMove = new Municipality();//Erstellung leerer Gemeinde
+        model.addAttribute("municipality", getFeeMove);//Setzten der Gemeinde auf das Model, damit beispielsweise die View darauf zugreifen kann
 
         return "newFee";
     }
 
     /**
-     * 
-     * @param model
-     * @param municipality
-     * @return 
+     * Neue Umzugsgebühr
+     * @param model Wird automatisch von Spring mitgegeben
+     * @param municipality Wird automatisch von Spring mitgegeben
+     * @return Weiterleitung zur angegebenen View
      */
-    @RequestMapping(value = {"/newFee"}, method = RequestMethod.POST)
+    @RequestMapping(value = {"/newFee"}, method = RequestMethod.POST)//Mappt die Funktion mit dem Absenden eines Forulars
     public String newFee(Model model, @ModelAttribute("municipality") Municipality municipality) {
 
-        eUmzugClientService.newFee(municipality.getMunicipalityId(), municipality.getFeeMove());
+        eUmzugClientService.newFee(municipality.getMunicipalityId(), municipality.getFeeMove());//Setzten der Umzugsgebühr im Backend
 
-        return "redirect:/indexMunicipality";
+        return "redirect:/indexMunicipality";//Weiterleitung zur angegebenen View
 
     }
 
     /**
-     * 
-     * @param model
-     * @return 
+     * Zuzugsgebühr anzeigen
+     * @param model Wird automatisch von Spring mitgegeben
+     * @return Laden der angegebenen View "newFeeIn"
      */
-    @RequestMapping(value = {"/newFeeIn"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/newFeeIn"}, method = RequestMethod.GET)//Mappt die Funktion mit dem URL Aufruf
     public String showNewFeeInPage(Model model) {
 
-        Municipality getFeeMoveIn = new Municipality();
-        model.addAttribute("municipality", getFeeMoveIn);
+        Municipality getFeeMoveIn = new Municipality();//Erstellung leerer Gemeinde
+        model.addAttribute("municipality", getFeeMoveIn);//Setzten der Gemeinde auf das Model, damit beispielsweise die View darauf zugreifen kann
 
-        return "newFeeIn";
+        return "newFeeIn";//Laden der angegebenen View "newFeeIn"
     }
 
     /**
-     * 
-     * @param model
-     * @param municipality
-     * @return 
+     * Neue Zuzugsgebühr
+     * @param model Wird automatisch von Spring mitgegeben
+     * @param municipality Wird automatisch von Spring mitgegeben
+     * @return Weiterleitung zur angegebenen View
      */
-    @RequestMapping(value = {"/newFeeIn"}, method = RequestMethod.POST)
+    @RequestMapping(value = {"/newFeeIn"}, method = RequestMethod.POST)//Mappt die Funktion mit dem Absenden eines Forulars
     public String newFeeIn(Model model,
             @ModelAttribute("municipality") Municipality municipality
     ) {
 
-        eUmzugClientService.newFeeIn(municipality.getMunicipalityId(), municipality.getFeeMoveIn());
+        eUmzugClientService.newFeeIn(municipality.getMunicipalityId(), municipality.getFeeMoveIn());//Setzten der Zuzugsgebühr im Backend
 
-        return "redirect:/indexMunicipality";
+        return "redirect:/indexMunicipality";//Weiterleitung zur angegebenen View
     }
 
     /**
-     * 
-     * @param model
-     * @return 
+     * Wegzugsgebühr anzeigen
+     * @param model Wird automatisch von Spring mitgegeben
+     * @return Anzeige der angegebenen View
      */
-    @RequestMapping(value = {"/newFeeOut"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/newFeeOut"}, method = RequestMethod.GET)//Mappt die Funktion mit dem URL Aufruf
     public String showNewFeeOutPage(Model model) {
 
-        Municipality getFeeMoveOut = new Municipality();
-        model.addAttribute("municipality", getFeeMoveOut);
+        Municipality getFeeMoveOut = new Municipality();//Erstellung leerer Gemeinde
+        model.addAttribute("municipality", getFeeMoveOut);//Setzten der Gemeinde auf das Model, damit beispielsweise die View darauf zugreifen kann
 
-        return "newFeeOut";
+        return "newFeeOut";//Laden der angegebenen View "newFeeIn"
     }
 
     /**
-     * 
+     * Neue Wegzugsgebühr
      * @param model
      * @param municipality
      * @return 
      */
-    @RequestMapping(value = {"/newFeeOut"}, method = RequestMethod.POST)
+    @RequestMapping(value = {"/newFeeOut"}, method = RequestMethod.POST)//Mappt die Funktion mit dem Absenden eines Forulars
     public String newFeeOut(Model model,
             @ModelAttribute("municipality") Municipality municipality
     ) {
 
-        eUmzugClientService.newFeeOut(municipality.getMunicipalityId(), municipality.getFeeMoveOut());
+        eUmzugClientService.newFeeOut(municipality.getMunicipalityId(), municipality.getFeeMoveOut());//Setzten der Wegzugsgebühr im Backend
 
-        return "redirect:/indexMunicipality";
+        return "redirect:/indexMunicipality";//Weiterleitung zur angegeben View
 
     }
 
