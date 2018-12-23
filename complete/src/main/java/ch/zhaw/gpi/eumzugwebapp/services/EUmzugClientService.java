@@ -45,14 +45,16 @@ public class EUmzugClientService {
 
     //DOKUMENTE
     /**
-     *Methode gibt eine Liste von allen Dokumenten zurück.  
-     * @return documentlists (List<Document>), bei einem HttpClientErrorException wird NULL zuruückgeben
+     * Methode gibt eine Liste von allen Dokumenten zurück.
+     *
+     * @return documentlists (List<Document>), bei einem
+     * HttpClientErrorException wird NULL zuruückgeben
      */
     public List<Document> getDocumentList() {
         try {
             //Einen REST Request absetzten und fordert die Ressource "Dokumente" 
             //an, gleichzeitig wird der Rsponse in die Variable dokumentListe gespeichert
-            ResponseEntity<List<Document>> documentListe = restTemplate.exchange(eUmzugClientServiceEndpoint + "/dokumente", HttpMethod.GET, null,              new ParameterizedTypeReference<List<Document>>() {
+            ResponseEntity<List<Document>> documentListe = restTemplate.exchange(eUmzugClientServiceEndpoint + "/dokumente", HttpMethod.GET, null, new ParameterizedTypeReference<List<Document>>() {
             });
 
             //Gibt die documentlists (List<Document>) aus dem Response als 
@@ -65,10 +67,11 @@ public class EUmzugClientService {
     }
 
     /**
-     *Methode gibt eine Dokument zurück, von einem spezifischen Namen
+     * Methode gibt eine Dokument zurück, von einem spezifischen Namen
+     *
      * @param name Der Name des Dokuments das zurück gegeben werden sollte
-     * @return Das Dokument welches über den Param "name" gesucht
-     * wird, bei einer httpClientErrorEception wird der Wert NULL zurückgegeben
+     * @return Das Dokument welches über den Param "name" gesucht wird, bei
+     * einer httpClientErrorEception wird der Wert NULL zurückgegeben
      */
     public Document getDocumentByName(String name) {
         try {
@@ -76,7 +79,7 @@ public class EUmzugClientService {
             Document document = restTemplate.getForObject(eUmzugClientServiceEndpoint + "/dokumente/{name}", // Abklären mit Marvin was 
                     Document.class, //Gib Typ von Dokeumnt Class zuruück
                     name //Parameter "name" welcher beim Funktionsaufruf angegeben wird, wird an den Restrequest weitergegeben,
-                    //damit der Restservice nach dem Dokument mit diesem Namen suchen kann.
+            //damit der Restservice nach dem Dokument mit diesem Namen suchen kann.
             );
             //Gibt das Dokument zurück
             return document;
@@ -114,28 +117,24 @@ public class EUmzugClientService {
     public void deleteDocument(int Id) {
         restTemplate.delete(eUmzugClientServiceEndpoint + "/dokumente/{Id}", Id);
     }
-    
-   
 
     //TRANSACTIONLOGS 
     /**
-     *Diese Methode gibt eine Liste von Personen zurück (List<Person>), welche 
+     * Diese Methode gibt eine Liste von Personen zurück (List<Person>), welche
      * einen TransactionLog Eintrag mit dem angegeben Status haben.
+     *
      * @param statusName Der Status nachdem im TransactionLog gefiltert wird.
-     * @return Liste von Personen, bei der HTTP ERROR wird NULL zurückgegeben 
+     * @return Liste von Personen, bei der HTTP ERROR wird NULL zurückgegeben
      * oder wenn kein Eintrag gefunden wird.
      */
     public List<Person> getPersonListForStatus(String statusName) {
         try {
-            //Erstellt ein HttpEntity für einen Request mit dem angegebenen Body "statusName" und
-            //ohne Header.
-            HttpEntity<String> request = new HttpEntity<>(statusName);
-
+                     
             //Führt einen REST Request aus und holt sich alle Personen wo es 
             //einen TransactionLog Eintrag mit dem Status aus dem Request gibt.
-            ResponseEntity<List<Person>> personListe = restTemplate.exchange(eUmzugClientServiceEndpoint + "/transactionlog/status/{statusName}", HttpMethod.GET, request, new ParameterizedTypeReference<List<Person>>() {
-            });
-            
+            ResponseEntity<List<Person>> personListe = restTemplate.exchange(eUmzugClientServiceEndpoint + "/transactionlog/status/{statusName}", HttpMethod.GET, null, new ParameterizedTypeReference<List<Person>>() {
+            }, statusName);
+
             //Gibt die Liste der Personen (List<Person>) aus dem Response als 
             //Rückgabewert der Funktion aus.
             return personListe.getBody();
@@ -146,10 +145,12 @@ public class EUmzugClientService {
     }
 
     /**
-     *Gibt den TransactionLog einer angegeben Person zurück.
-     * @param localPersonId Die ID der Person für wen der TransactionLog zurückgegeben werden sollte.
-     * @return TransactionLog, bei der HTTP ERROR wird NULL zurückgegeben 
-     * oder wenn kein Eintrag gefunden wird.
+     * Gibt den TransactionLog einer angegeben Person zurück.
+     *
+     * @param localPersonId Die ID der Person für wen der TransactionLog
+     * zurückgegeben werden sollte.
+     * @return TransactionLog, bei der HTTP ERROR wird NULL zurückgegeben oder
+     * wenn kein Eintrag gefunden wird.
      */
     public TransactionLog getCurrentStatusForPerson(String localPersonId) {
         try {
@@ -167,9 +168,11 @@ public class EUmzugClientService {
     }
 
     //GEMEINDEN
-     /**
-     *Methode gibt eine Liste von allen Gemeinden zurück.  
-     * @return documentlists (List<Municipality>), bei einem HttpClientErrorException wird NULL zurückgeben
+    /**
+     * Methode gibt eine Liste von allen Gemeinden zurück.
+     *
+     * @return documentlists (List<Municipality>), bei einem
+     * HttpClientErrorException wird NULL zurückgeben
      */
     public List<Municipality> getMunicipalityList() {
         try {
@@ -188,10 +191,12 @@ public class EUmzugClientService {
     }
 
     /**
-     *Methode gibt eine Dokument zurück, von einem spezifischen Namen
-     * @param gemeindeName Der Name der Gemeinde das zurück gegeben werden sollte
-     * @return Die Gemeinde welches über den Param "gemeindeName" gesucht
-     * wird, bei einer httpClientErrorEception wird der Wert NULL zurückgegeben
+     * Methode gibt eine Dokument zurück, von einem spezifischen Namen
+     *
+     * @param gemeindeName Der Name der Gemeinde das zurück gegeben werden
+     * sollte
+     * @return Die Gemeinde welches über den Param "gemeindeName" gesucht wird,
+     * bei einer httpClientErrorEception wird der Wert NULL zurückgegeben
      */
     public Municipality getMunicipalityByName(String gemeindeName) {
         try {
@@ -199,7 +204,7 @@ public class EUmzugClientService {
             Municipality municipality = restTemplate.getForObject(eUmzugClientServiceEndpoint + "/gemeinden/{gemeindeName}",
                     Municipality.class, //Gibt resultatklasse an in welcher das Ergebnis  deserialisert werden soll
                     gemeindeName //Parameter "gemeindeName" welcher beim Funktionsaufruf angegeben wird, wird an den Restrequest weitergegeben,
-                    //damit der Restservice nach dem Dokument mit diesem Namen suchen kann.
+            //damit der Restservice nach dem Dokument mit diesem Namen suchen kann.
             );
             //Gibt die Gemeinde zurück
             return municipality;
@@ -231,27 +236,32 @@ public class EUmzugClientService {
     }
 
     /**
-     *Löscht die Gemeinde mit der angegbenen ID.
+     * Löscht die Gemeinde mit der angegbenen ID.
+     *
      * @param Id
      */
     public void deleteMunicipality(int Id) {
         //sendet über eine PUT-Anfrage an eumzugapi/v1//gemeinde/{Id}/{name}
-      //  restTemplate.put(eUmzugClientServiceEndpoint + "/gemeinden/{Id}","", Id);
+        //  restTemplate.put(eUmzugClientServiceEndpoint + "/gemeinden/{Id}","", Id);
         restTemplate.delete(eUmzugClientServiceEndpoint + "/gemeinden/{Id}", Id);
     }
 
     /**
-     * Erstellt neue Gebühr für eine Gemeinde über die angegebene ID und der angegebenen Gebühr
+     * Erstellt neue Gebühr für eine Gemeinde über die angegebene ID und der
+     * angegebenen Gebühr
+     *
      * @param id Das ist die ID der Gemeinde
      * @param gebuehr Der Wert der Gebühr
      */
     public void newFee(int id, int gebuehr) {
         //Sendet über eine PUT-Anfrage an eumzugapi/v1/gemeinde/gemeinde Dabei wird keine Antwort der API-Methode ausgelesen. 
-        restTemplate.put(eUmzugClientServiceEndpoint + "/gemeinden/{id}/move/{Gebuehr}", "",id, gebuehr);
+        restTemplate.put(eUmzugClientServiceEndpoint + "/gemeinden/{id}/move/{Gebuehr}", "", id, gebuehr);
     }
 
     /**
-     * Zugugsgebühr wird erstellt über die angegebene ID und der angegebenen Gebühr
+     * Zugugsgebühr wird erstellt über die angegebene ID und der angegebenen
+     * Gebühr
+     *
      * @param id Das ist die ID der Gemeinde
      * @param gebuehr Der Wert der Geführ
      */
@@ -261,7 +271,9 @@ public class EUmzugClientService {
     }
 
     /**
-     * Wegzugsgebühr wird erstellt über die angegebene ID und der angegebenen Gebühr
+     * Wegzugsgebühr wird erstellt über die angegebene ID und der angegebenen
+     * Gebühr
+     *
      * @param id Das ist die ID der Gemeinde
      * @param gebuehr Der Wert der Gebühr
      */

@@ -1,52 +1,65 @@
-<!-- Formular von Personenliste nach Status -->
 
-<html>
-    <!-- Kopfzeile mit Titel "Personenliste nach Status" -->
+<!-- Formular von TransactionLog einer Person -->
+<!DOCTYPE HTML>
+
+
+<html xmlns:th="http://www.thymeleaf.org">
     <head>
-        <title>Personenliste nach Status</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="UTF-8" />
+        <title>Transaktions Log Personen Liste</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     </head>
-    <!-- Body-element von Personenliste nach Status mit Zurück-Befehl, Eingabefeld für "Name des Statuses" und ein Suchen-Button-->
     <body>
-        <h1>Personenliste nach Status</h1>
-        <br/>
-        <a th:href="@{/indexTransactionLog}" class="btn btn-default">Zurück</a> 
-        <br>
-        <br>
-        <form th:action="@{/getPersonListForStatus}"
-              th:object="${status}" method="POST">
-            Name des Statuses
-            <input type="text" th:field="*{name}" />    
-            <br/>
-            <br>
-            <input type="submit" value="Suchen" />
-        </form>
-        <br>
-        <br>
-        <!-- Panel der Ausgabetabelle von der Suche mit den Reitern ID, AHV-Nummer, Vorname, Nachname, Geschlecht, Geburtstag -->
-        <div class="panel panel-default">
-            <div class="panel-heading"><b>Personenliste nach Status</b></div>
-            <div class="panel-body">
-                <table border="1">
-                    <tr>
-                        <th>ID</th>
-                        <th>AHV-Nummer</th>
-                        <th>Vorname</th>
-                        <th>Nachname</th>
-                        <th>Geschlecht</th>
-                        <th>Geburstag</th>
-                    </tr>
-                    <tr th:each ="person : ${personenListe}">
-                        <td th:utext="${person.localPersonId}">...</td>
-                        <td th:utext="${person.vn}">...</td>
-                        <td th:utext="${person.firstName}">...</td>
-                        <td th:utext="${person.officialName}">...</td>
-                        <td th:utext="${person.sex}">...</td>
-                        <td th:utext="${person.dateOfBirth}">...</td>
-                    </tr>
-                </table>
-            </div>
-        </div>
-    </body>
-</html>
+        <div class="container-fluid text-center">    
+            <div class="row content">
+                <div class="col-sm-2 sidenav">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Flag_of_Canton_of_Bern.svg/2000px-Flag_of_Canton_of_Bern.svg.png" class="img-rounded" alt="Bern" vspace="50" width="200" height="200"> 
+                </div>
+                <div class="col-sm-8 text-left"> 
+                    <h1> Transaktions Log Liste aller Personen mit angegebenem Log </h1>
+                    <p>Geben Sie die den TransactionLog Name ein um eine Liste all deiser Logs zu erhalten.</p>
+                    <a th:href="@{/indexTransactionLog}" class="btn btn-default">Zurück</a> 
+                    <hr>
+                    <form th:action="@{/getPersonListForStatus}"
+                          th:object="${status}" method="POST">
+                        Name des Statuses
+                        <input type="text" th:field="*{name}" class="form-control required"/>    
+                        <br/>
+                        <br>
+                        <input type="submit" value="Suchen" class="btn btn-primary"/>
+                    </form>
+                    <br>
+                    <br>
+                    <!-- Panel der Ausgabetabelle von der Suche mit den Reitern ID, AHV-Nummer, Vorname, Nachname, Geschlecht, Geburtstag -->
+                    <div class="panel panel-default">
+                        <div class="panel-heading"><b>Personenliste nach Status</b></div>
+                        <div class="panel-body">
+                            <table class="table table-striped">
+                                <tr>
+                                    <th>ID</th>
+                                    <th>AHV-Nummer</th>
+                                    <th>Vorname</th>
+                                    <th>Nachname</th>
+                                    <th>Geschlecht</th>
+                                    <th>Geburstag</th>
+                                </tr>
+                                <tr th:each ="person : ${personenListe}">
+                                    <td th:utext="${person.localPersonId}">...</td>
+                                    <td th:utext="${person.vn}">...</td>
+                                    <td th:utext="${person.firstName}">...</td>
+                                    <td th:utext="${person.officialName}">...</td>
+                                    <td th:utext="${person.sex}">...</td>
+                                    <td th:utext="${person.dateOfBirth}">...</td>
+                                </tr>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+                </body>
+                </html>
+
+

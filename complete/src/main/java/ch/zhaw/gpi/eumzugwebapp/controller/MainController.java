@@ -455,6 +455,9 @@ public class MainController {
         model.addAttribute("person", person);
 
         TransactionLog transactionLog = new TransactionLog();
+        Status status = new Status();
+        transactionLog.setStatus(status);
+        transactionLog.setPerson(person);
         model.addAttribute("transactionLog", transactionLog);
 
         return "getCurrentStatusForPerson";
