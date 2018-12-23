@@ -1,17 +1,14 @@
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
+<!-- Formular von Index der Gemeindenverwaltung -->
+
 <html>
+    <!-- Kopfzeile mit Titel "Gemeindenverwaltung" -->
     <head>
-        <title>Municipality Administration</title>
+        <title>Gemeindenverwaltung</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <h1>Gemeindenverwaltung</h1>
-    
+    <!-- Body-Element mit Zurück-Befehl und den Verweisen zu allen Forms für die Gemeindenverwaltung -->
     <body>
         <br>
         <a th:href="@{/index}" class="btn btn-default">Zurück</a> 
@@ -32,6 +29,7 @@ and open the template in the editor.
         <a th:href="@{/newFeeOut}" class="btn btn-default">Wegzugsgebühr ändern</a>
         <br>
         <br>
+        <!-- Panel mit einer Tabelle von allen Gemeinden mit den Reitern ID, Name, Umzugsgebühr, Zuzugsgebühr und Wegzugsgebühr -->
         <div class="panel panel-default">
             <div class="panel-heading"><b>Gemeinden</b></div>
             <div class="panel-body">

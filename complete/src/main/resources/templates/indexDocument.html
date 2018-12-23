@@ -1,16 +1,13 @@
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
+<!-- Formular von Index der Dokumentenverwaltung -->
+
 <html>
+    <!-- Kopfzeile mit Titel "Dokumentenverwaltung" -->
     <head>
         <title>Dokumentenverwaltung</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
-
+    <!-- Body-Element mit Zurück-Befehl und den Verweisen zu allen Forms für die Gemeindenverwaltung -->
     <body>
         <h1>Dokumentenverwaltung</h1>
         <br>
@@ -26,6 +23,7 @@ and open the template in the editor.
         <a th:href="@{/renameDocument}" class="btn btn-default">Dokument umbenennen</a>  
         <br>
         <br>
+        <!-- Panel mit einer Tabelle von allen Dokumenten mit den Reitern ID und Name -->
         <div class="panel panel-default">
             <div class="panel-heading"><b>Dokumente</b></div>
             <div class="panel-body">
