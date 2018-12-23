@@ -1,41 +1,51 @@
 <!-- Formular von Dokument suchen -->
+<!DOCTYPE HTML>
+<!-- Index Form -->
 
 <html xmlns:th="http://www.thymeleaf.org">
-    <!-- Kopfzeile mit dem Titel "Dokument suchen" -->
     <head>
         <meta charset="UTF-8" />
-        <title>Dokument suchen</title>
+        <title>Dokument Suchen</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     </head>
-        <!-- Body-element von Dokument suchen mit Zurück-Befehl, Eingabefeld für Name und ein Suchen-Button 
-        Zusätzlich eine Ausgabetabelle mit den Reitern ID und Name -->
     <body>
-        <h1>Dokument suchen</h1>
-        <br/>
-        <a th:href="@{/indexDocument}" class="btn btn-default">Zurück</a> 
-        <br>
-        <br>
-        <div>
-            <form th:action="@{/getDocumentByName}"
-                  th:object="${document}" method="POST">
-                Name vom Dokument:
-                <input type="text" th:field="*{name}" />    
-                <br/>
-                <br>
-                <input type="submit" value="Suchen" />
-            </form>
+        <div class="container-fluid text-center">    
+            <div class="row content">
+                <div class="col-sm-2 sidenav">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Flag_of_Canton_of_Bern.svg/2000px-Flag_of_Canton_of_Bern.svg.png" class="img-rounded" alt="Cinque Terre" vspace="50" width="200" height="200"> 
+                </div>
+                <div class="col-sm-8 text-left"> 
+                    <h1> Dokument suchen </h1>
+                    <p>Geben Sie den Namen des Dokumentes ein um die ID zu erhalten.</p>
+                    <a th:href="@{/indexDocument}" class="btn btn-default">Zurück</a> 
+                    <hr>
+                    <form th:action="@{/getDocumentByName}"
+                          th:object="${document}" method="POST">
+                        Name vom Dokument:
+                        <input type="text" th:field="*{name}" class="form-control" required/>    
+                        <br/>
+                        <br>
+                        <input type="submit" value="Suchen" class="btn btn-primary"/>
+                    </form>
+                    <br/>
+                    <br>
+                    <table class="table table-striped">
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                        </tr>
+                        <tr>
+                            <td th:utext="${document.documentId}">...</td>
+                            <td th:utext="${document.name}">...</td>
+                        </tr>
+                    </table>
 
-            <br>
-            <br>
-            <table border="1">
-                <tr>
-                    <th>ID</th>
-                    <th>Name</th>
-                </tr>
-                <tr>
-                    <td th:utext="${document.documentId}">...</td>
-                    <td th:utext="${document.name}">...</td>
-                </tr>
-            </table>
+                </div>
+            </div>
         </div>
     </body>
 </html>
+

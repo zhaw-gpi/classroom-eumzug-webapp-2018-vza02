@@ -1,28 +1,38 @@
-<!-- Formular von Dokument löschen -->
+<!-- Formular von Dokument Hinzufügen -->
+<!DOCTYPE HTML>
+<!-- Index Form -->
 
 <html xmlns:th="http://www.thymeleaf.org">
-    <!-- Kopfzeile mit dem Titel "Dokument löschen" -->
     <head>
         <meta charset="UTF-8" />
-        <title>Dokument löschen</title>
+        <title>Dokument Löschen</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     </head>
-    <!-- Body-element von Dokument löschen mit Zurück-Befehl, Eingabefeld für ID und ein Löschen-Button -->
     <body>
-        <h1>Dokument löschen</h1>
-        <br>
-        <a th:href="@{/indexDocument}" class="btn btn-default">Zurück</a>
-        <br>
-        <br>
-        <form th:action="@{/deleteDocument}"
-              th:object="${document}" method="POST">
-            ID:
-            <input type="text" th:field="*{documentId}" />    
-            <br/>
-            <br/>
-            <input type="submit" value="Löschen" />
-        </form>
-
-        <br/>
-
+        <div class="container-fluid text-center">    
+            <div class="row content">
+                <div class="col-sm-2 sidenav">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Flag_of_Canton_of_Bern.svg/2000px-Flag_of_Canton_of_Bern.svg.png" class="img-rounded" alt="Cinque Terre" vspace="50" width="200" height="200"> 
+                </div>
+                <div class="col-sm-8 text-left"> 
+                    <h1> Dokument löschen </h1>
+                    <p>  Geben Sie die ID des zulöschenden Dokumentes ein.</p>
+                    <a th:href="@{/indexDocument}" class="btn btn-default">Zurück</a> 
+                    <hr>
+                    <form th:action="@{/deleteDocument}"
+                          th:object="${document}" method="POST">
+                        ID:
+                        <input type="text" th:field="*{documentId}" class="form-control" required/>    
+                        <br/>
+                        <br/>
+                        <input type="submit" value="Löschen" class="btn btn-primary"/>
+                    </form>
+                </div>
+            </div>
+        </div>
     </body>
 </html>
+

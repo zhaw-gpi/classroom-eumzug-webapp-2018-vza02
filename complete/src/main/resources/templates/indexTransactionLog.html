@@ -1,25 +1,38 @@
-<!-- Formular von Index der Transaction Log Verwaltung -->
+<!-- Formular von Index der TransactionLog-->
+<!DOCTYPE HTML>
+<!-- Index Form -->
 
-<html>
-    <!-- Kopfzeile mit Titel "Transaction Log Verwaltung" -->
-    <head>
-        <title>Transaction Log Verwaltung</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <!-- Body-Element mit Zurück-Befehl und den Verweisen zur "Personenliste für einen Status" und zum "Aktueller Status für eine Person" -->
-    <body>
-        <h1>Transaction Log Verwaltung</h1>
-        <div class="panel panel-default">
-            <div class="panel-heading"><b>Statuseinträge</b>
+<head>
+    <meta charset="UTF-8" />
+    <title>Transaktions Logs Adimistration</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <div class="container-fluid text-center">    
+        <div class="row content">
+            <div class="col-sm-2 sidenav">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Flag_of_Canton_of_Bern.svg/2000px-Flag_of_Canton_of_Bern.svg.png" class="img-rounded" alt="Cinque Terre" vspace="50" width="200" height="200"> 
+
+                <br>
+                <br>
+                <a th:href="@{/getPersonListForStatus}" class="btn btn-primary">Personenliste für einen Status</a>  
+                <br>
+                <br>
+                <a th:href="@{/getCurrentStatusForPerson}" class="btn btn-primary">Aktueller Status für eine Person</a>
+            </div>
+            <div class="col-sm-8 text-left"> 
+                <h1>Transaktionslogs Administrieren</h1>
+                <p> Dieses Tool hilft Ihnen die Transaktions Logs der eUmzugplattform zu administrieren, wählen Sie dazu was Sie ändern möchten.</p>
+                <hr>
                 <br>
                 <a th:href="@{/index}" class="btn btn-default">Zurück</a> 
-                <br>
-                <br>
-                <a th:href="@{/getPersonListForStatus}" class="btn btn-default">Personenliste für einen Status</a>  
-                <br>
-                <a th:href="@{/getCurrentStatusForPerson}" class="btn btn-default">Aktueller Status für eine Person</a>
+
             </div>
         </div>
-    </body>
-</html>
+    </div>
+</body>
+</html> 

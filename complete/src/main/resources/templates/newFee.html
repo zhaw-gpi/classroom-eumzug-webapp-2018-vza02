@@ -1,31 +1,41 @@
-<!-- Formular von Neue Gebühr -->
+<!-- Formular von Umzugs Gebühr anpassen -->
+<!DOCTYPE HTML>
+<!-- Index Form -->
 
 <html xmlns:th="http://www.thymeleaf.org">
-    <!-- Kopfzeile mit Titel "Neue Gebühr" -->
     <head>
         <meta charset="UTF-8" />
-        <title>Neue Gebühr</title>
+        <title>Umzugsgebühr anpassen</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     </head>
-    <!-- Body-element von Neue Gebühr mit Zurück-Befehl, Eingabefeld für Gemeinden ID und der neuen Umzugsgebühr
-    Zusätzlich ein Ändern-Button -->
     <body>
-        <h1>Neue Gebühr</h1>
-        <br>
-        <a th:href="@{/indexMunicipality}" class="btn btn-default">Zurück</a>
-        <br>
-        <br>
-        <div>
-            <form th:action="@{/newFee}"
-                  th:object="${municipality}" method="POST">
-                Gemeiden ID:
-                <input type="text" th:field="*{municipalityId}" />    
-                <br/>
-                Neue Umzugsgebühr:
-                <input type="text" th:field="*{feeMove}" />    
-                <br/>
-                <br>
-                <input type="submit" value="Ändern" />
-            </form>
+        <div class="container-fluid text-center">    
+            <div class="row content">
+                <div class="col-sm-2 sidenav">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Flag_of_Canton_of_Bern.svg/2000px-Flag_of_Canton_of_Bern.svg.png" class="img-rounded" alt="Cinque Terre" vspace="50" width="200" height="200"> 
+                </div>
+                <div class="col-sm-8 text-left"> 
+                    <h1> Umzugsgebühr anpassen </h1>
+                    <p>Füllen Sie die Angaben zur Gemeinde sowie die neue Gebühr aus welche Sie ändern möchten möchten.</p>
+                    <a th:href="@{/indexMunicipality}" class="btn btn-default">Zurück</a> 
+                    <hr>
+                    <form th:action="@{/newFee}"
+                          th:object="${municipality}" method="POST">
+                        Gemeiden ID:
+                        <input type="text" th:field="*{municipalityId}" class="form-control" requred />    
+                        <br/>
+                        Neue Umzugsgebühr:
+                        <input type="text" th:field="*{feeMove}" class="form-control" required/>    
+                        <br/>
+                        <br>
+                        <input type="submit" value="Ändern" class="btn btn-primary"/>
+                    </form>
+                </div>
+            </div>
         </div>
     </body>
 </html>
+

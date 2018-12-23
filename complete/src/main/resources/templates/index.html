@@ -1,20 +1,35 @@
-<!-- Index Formular -->
+<!DOCTYPE HTML>
+<!-- Index Form -->
+
 <html xmlns:th="http://www.thymeleaf.org">
-    <!-- Kopfzeile mit Titel "Administration" -->
     <head>
         <meta charset="UTF-8" />
         <title>Adminstration</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     </head>
-    <!-- Body-Element mit den Verweisen zu "Gemende verwalten", "Dokumente verwalten" und "TransactionLogs verwalten" -->
     <body>
-        <h1>Adminstration</h1>
-        <a th:href="@{/indexMunicipality}" class="btn btn-default">Gemeinden verwalten</a> 
-        <br>
-        <br>
-        <a th:href="@{/indexDocument}" class="btn btn-default">Dokumente verwalten</a> 
-        <br>
-        <br>
-        <a th:href="@{/indexTransactionLog}" class="btn btn-default">TransactionLogs verwalten</a> 
+        <div class="container-fluid text-center">    
+            <div class="row content">
+                <div class="col-sm-2 sidenav">
+                      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Flag_of_Canton_of_Bern.svg/2000px-Flag_of_Canton_of_Bern.svg.png" class="img-rounded" alt="Cinque Terre" vspace="50" width="200" height="200"> 
+                </div>
+                <div class="col-sm-8 text-left"> 
+                    <h1> eUmzug Administrations Tool </h1>
+                    <p> Dieses Tool hilft Ihnen die Daten der eUmzugplattform zu administrieren, wählen Sie dazu zuerst die Kategorie aus.</p>
+                    <hr>
+                    <a th:href="@{/indexMunicipality}" class="btn btn-primary">Gemeinden verwalten</a> 
+                    <br>
+                    <br>
+                    <a th:href="@{/indexDocument}" class="btn btn-primary">Dokumente verwalten</a> 
+                    <br>
+                    <br>
+                    <a th:href="@{/indexTransactionLog}" class="btn btn-primary">TransactionLogs verwalten</a> 
+                </div>
+            </div>
+        </div>
     </body>
 </html>
 

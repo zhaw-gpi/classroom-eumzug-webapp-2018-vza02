@@ -1,43 +1,61 @@
-<!-- Formular von Index der Dokumentenverwaltung -->
+<!-- Formular von Index der Dokumentverwaltung -->
+<!DOCTYPE HTML>
+<!-- Index Form -->
 
-<html>
-    <!-- Kopfzeile mit Titel "Dokumentenverwaltung" -->
-    <head>
-        <title>Dokumentenverwaltung</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <!-- Body-Element mit Zurück-Befehl und den Verweisen zu allen Forms für die Gemeindenverwaltung -->
-    <body>
-        <h1>Dokumentenverwaltung</h1>
-        <br>
-        <a th:href="@{/index}" class="btn btn-default">Zurück</a>
-        <br>
-        <br>
-        <a th:href="@{/addDocument}" class="btn btn-default">Dokument hinzufügen</a> 
-        <br>
-        <a th:href="@{/deleteDocument}" class="btn btn-default">Dokument löschen</a> 
-        <br>
-        <a th:href="@{/getDocumentByName}" class="btn btn-default">Suche Dokument nach Name</a> 
-        <br>
-        <a th:href="@{/renameDocument}" class="btn btn-default">Dokument umbenennen</a>  
-        <br>
-        <br>
-        <!-- Panel mit einer Tabelle von allen Dokumenten mit den Reitern ID und Name -->
-        <div class="panel panel-default">
-            <div class="panel-heading"><b>Dokumente</b></div>
-            <div class="panel-body">
-                <table border="1">
-                    <tr>
-                        <th>ID</th>
-                        <th>Name</th>
-                    </tr>
-                    <tr th:each ="document : ${documentListe}">
-                        <td th:utext="${document.documentId}">...</td>
-                        <td th:utext="${document.name}">...</td>
-                    </tr>
-                </table>
+<head>
+    <meta charset="UTF-8" />
+    <title>Dokumente Adimistration</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <div class="container-fluid text-center">    
+        <div class="row content">
+            <div class="col-sm-2 sidenav">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Flag_of_Canton_of_Bern.svg/2000px-Flag_of_Canton_of_Bern.svg.png" class="img-rounded" alt="Cinque Terre" vspace="50" width="200" height="200"> 
+
+                <br>
+                <br>
+                <a th:href="@{/addDocument}" class="btn btn-primary">Dokument hinzufügen</a> 
+                <br>
+                <br>
+                <a th:href="@{/deleteDocument}" class="btn btn-primary">Dokument löschen</a> 
+                <br>
+                <br>
+                <a th:href="@{/getDocumentByName}" class="btn btn-primary">Suche Dokument nach Name</a> 
+                <br>
+                <br>
+                <a th:href="@{/renameDocument}" class="btn btn-primary">Dokument umbenennen</a>  
+            </div>
+            <div class="col-sm-8 text-left"> 
+                <h1> Administration der Dokumente </h1>
+                <p> Dieses Tool hilft Ihnen die Dokumente der eUmzugplattform zu administrieren, wählen Sie dazu was Sie ändern möchten.</p>
+                <hr>
+                <br>
+                <a th:href="@{/index}" class="btn btn-default">Zurück</a> 
+
+                <br>
+                <br>
+                <div class="panel panel-default">
+                    <div class="panel-heading"><b>Gemeinden</b></div>
+                    <div class="panel-body">
+                        <table class="table table-striped">
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                            </tr>
+                            <tr th:each ="document : ${documentListe}">
+                                <td th:utext="${document.documentId}">...</td>
+                                <td th:utext="${document.name}">...</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
-    </body>
-</html>
+    </div>
+</body>
+</html> 

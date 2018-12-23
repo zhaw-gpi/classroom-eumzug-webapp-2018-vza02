@@ -1,55 +1,75 @@
 <!-- Formular von Index der Gemeindenverwaltung -->
+<!DOCTYPE HTML>
+<!-- Index Form -->
 
-<html>
-    <!-- Kopfzeile mit Titel "Gemeindenverwaltung" -->
-    <head>
-        <title>Gemeindenverwaltung</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <h1>Gemeindenverwaltung</h1>
-    <!-- Body-Element mit Zurück-Befehl und den Verweisen zu allen Forms für die Gemeindenverwaltung -->
-    <body>
-        <br>
-        <a th:href="@{/index}" class="btn btn-default">Zurück</a> 
-        <br>
-        <br>
-        <a th:href="@{/addMunicipality}" class="btn btn-default">Gemeinde hinzufügen</a>  
-        <br>
-        <a th:href="@{/deleteMunicipality}" class="btn btn-default">Gemeinde löschen</a> 
-        <br>
-        <a th:href="@{/getMunicipalityByName}" class="btn btn-default">Gemeinde suchen nach Name</a> 
-        <br>
-        <a th:href="@{/renameMunicipality}" class="btn btn-default">Gemeinde umbenennen</a>  
-        <br>
-        <a th:href="@{/newFee}" class="btn btn-default">Gebühr ändern</a>  
-        <br>
-        <a th:href="@{/newFeeIn}" class="btn btn-default">Zuzugsgebühr ändern</a>  
-        <br>
-        <a th:href="@{/newFeeOut}" class="btn btn-default">Wegzugsgebühr ändern</a>
-        <br>
-        <br>
-        <!-- Panel mit einer Tabelle von allen Gemeinden mit den Reitern ID, Name, Umzugsgebühr, Zuzugsgebühr und Wegzugsgebühr -->
-        <div class="panel panel-default">
-            <div class="panel-heading"><b>Gemeinden</b></div>
-            <div class="panel-body">
-                <table border="1">
-                    <tr>
-                        <th>ID</th>
-                        <th>Name</th>
-                        <th>Umzugsgebühr</th>
-                        <th>Zuzugsgebühr</th>
-                        <th>Wegzugsgebühr</th>
-                    </tr>
-                    <tr th:each ="municipality : ${municipalityListe}">
-                        <td th:utext="${municipality.municipalityId}">...</td>
-                        <td th:utext="${municipality.municipalityName}">...</td>
-                        <td th:utext="${municipality.feeMove}">...</td>
-                        <td th:utext="${municipality.feeMoveIn}">...</td>
-                        <td th:utext="${municipality.feeMoveOut}">...</td>
-                    </tr>
-                </table>
+<head>
+    <meta charset="UTF-8" />
+    <title>Gemeinde Adimistration</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <div class="container-fluid text-center">    
+        <div class="row content">
+            <div class="col-sm-2 sidenav">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Flag_of_Canton_of_Bern.svg/2000px-Flag_of_Canton_of_Bern.svg.png" class="img-rounded" alt="Cinque Terre" vspace="50" width="200" height="200"> 
+
+                <br>
+                <a th:href="@{/addMunicipality}" class="btn btn-primary">Gemeinde hinzufügen</a>  
+                <br>
+                <br>
+                <a th:href="@{/deleteMunicipality}" class="btn btn-primary">Gemeinde löschen</a> 
+                <br>
+                <br>
+                <a th:href="@{/getMunicipalityByName}" class="btn btn-primary">Gemeinde suchen nach Name</a> 
+                <br>
+                <br>
+                <a th:href="@{/renameMunicipality}" class="btn btn-primary">Gemeinde umbenennen</a>  
+                <br>
+                <br>
+                <a th:href="@{/newFee}" class="btn btn-primary">Gebühr ändern</a>  
+                <br>
+                <br>
+                <a th:href="@{/newFeeIn}" class="btn btn-primary">Zuzugsgebühr ändern</a>  
+                <br>
+                <br>
+                <a th:href="@{/newFeeOut}" class="btn btn-primary">Wegzugsgebühr ändern</a>
+            </div>
+            <div class="col-sm-8 text-left"> 
+                <h1> Administration der Gemeinden </h1>
+                <p> Dieses Tool hilft Ihnen die Gemeinden der eUmzugplattform zu administrieren, wählen Sie dazu was Sie ändern möchten.</p>
+                <hr>
+                <br>
+                <a th:href="@{/index}" class="btn btn-default">Zurück</a> 
+
+                <br>
+                <br>
+                <div class="panel panel-default">
+                    <div class="panel-heading"><b>Gemeinden</b></div>
+                    <div class="panel-body">
+                        <table class="table table-striped">
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Umzugsgebühr</th>
+                                <th>Zuzugsgebühr</th>
+                                <th>Wegzugsgebühr</th>
+                            </tr>
+                            <tr th:each ="municipality : ${municipalityListe}">
+                                <td th:utext="${municipality.municipalityId}">...</td>
+                                <td th:utext="${municipality.municipalityName}">...</td>
+                                <td th:utext="${municipality.feeMove}">...</td>
+                                <td th:utext="${municipality.feeMoveIn}">...</td>
+                                <td th:utext="${municipality.feeMoveOut}">...</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
-    </body>
-</html>
+    </div>
+</body>
+</html> 
