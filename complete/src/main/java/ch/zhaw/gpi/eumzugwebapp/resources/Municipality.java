@@ -51,7 +51,7 @@ public class Municipality implements Serializable {
 
     public void setFeeMove(int feeMove) {
         this.feeMove = feeMove;
-    }    
+    }
 
     public int getFeeMoveOut() {
         return this.feeMoveOut;

@@ -58,6 +58,16 @@ public class MainController {
 
     }
 
+    //Dokument löschen
+    @RequestMapping(value = {"/", "/deleteDocument"}, method = RequestMethod.GET)
+    public String showDeleteDocumentPage(Model model) {
+
+        Document document = new Document();
+        model.addAttribute("document", document);
+
+        return "deleteDocument";
+    }
+
     @RequestMapping(value = {"/deleteDocument"}, method = RequestMethod.POST)
     public String deleteDocument(Model model, @ModelAttribute("id") int id) {
 
@@ -73,6 +83,15 @@ public class MainController {
         eUmzugClientService.getDocumentByName(name);
 
         return "indexDocument";
+    }
+
+    @RequestMapping(value = {"/", "/renameDocument"}, method = RequestMethod.GET)
+    public String showRenameDocumentPage(Model model) {
+
+        Document document = new Document();
+        model.addAttribute("document", document);
+
+        return "renameDocument";
     }
 
     @RequestMapping(value = {"/renameDocument"}, method = RequestMethod.POST)
@@ -157,8 +176,20 @@ public class MainController {
 
     }
 
+    @RequestMapping(value = {"/newFee"}, method = RequestMethod.GET)
+    public String showNewFeePage(Model model) {
+
+        Municipality getFeeMove = new Municipality();
+        model.addAttribute("municipality", getFeeMove);
+
+        return "newFee";
+    }
+
     @RequestMapping(value = {"/newFee"}, method = RequestMethod.POST)
-    public String newFee(Model model, @ModelAttribute("id") int Id, @ModelAttribute("gebuehr") int gebuehr) {
+    public String newFee(Model model,
+            @ModelAttribute("id") int Id,
+            @ModelAttribute("gebuehr") int gebuehr
+    ) {
 
         eUmzugClientService.newFee(Id, gebuehr);
 
@@ -166,8 +197,20 @@ public class MainController {
 
     }
 
+    @RequestMapping(value = {"/newFeeIn"}, method = RequestMethod.GET)
+    public String showNewFeeInPage(Model model) {
+
+        Municipality getFeeMoveIn = new Municipality();
+        model.addAttribute("municipality", getFeeMoveIn);
+
+        return "newFeeIn";
+    }
+
     @RequestMapping(value = {"/newFeeIn"}, method = RequestMethod.POST)
-    public String newFeeIn(Model model, @ModelAttribute("id") int Id, @ModelAttribute("gebuehr") int gebuehr) {
+    public String newFeeIn(Model model,
+            @ModelAttribute("id") int Id,
+            @ModelAttribute("gebuehr") int gebuehr
+    ) {
 
         eUmzugClientService.newFeeIn(Id, gebuehr);
 
@@ -175,8 +218,20 @@ public class MainController {
 
     }
 
+    @RequestMapping(value = {"/newFeeOut"}, method = RequestMethod.GET)
+    public String showNewFeeOutPage(Model model) {
+
+        Municipality getFeeMoveOut = new Municipality();
+        model.addAttribute("municipality", getFeeMoveOut);
+
+        return "newFeeOut";
+    }
+
     @RequestMapping(value = {"/newFeeOut"}, method = RequestMethod.POST)
-    public String newFeeOut(Model model, @ModelAttribute("id") int Id, @ModelAttribute("gebuehr") int gebuehr) {
+    public String newFeeOut(Model model,
+            @ModelAttribute("id") int Id,
+            @ModelAttribute("gebuehr") int gebuehr
+    ) {
 
         eUmzugClientService.newFeeOut(Id, gebuehr);
 
@@ -189,13 +244,16 @@ public class MainController {
 // ----------------------------------------------------------------------------------------------------------//
     //Dokumentenliste
     @RequestMapping(value = {"/indexTransactionLog"}, method = RequestMethod.GET)
-    public String getTransactionLog(Model model) {
+    public String getTransactionLog(Model model
+    ) {
 
         return "indexTransactionLog";
     }
 
     @RequestMapping(value = {"/getPersonListForStatus"}, method = RequestMethod.GET)
-    public String getPersonListForStatus(Model model, @ModelAttribute("localPersonId") String localPersonId) {
+    public String getPersonListForStatus(Model model,
+            @ModelAttribute("localPersonId") String localPersonId
+    ) {
 
         eUmzugClientService.getPersonListForStatus(localPersonId);
 
@@ -203,7 +261,9 @@ public class MainController {
     }
 
     @RequestMapping(value = {"/getCurrentStatusForPerson"}, method = RequestMethod.GET)
-    public String getCurrentStatusForPerson(Model model, @ModelAttribute("localPersonId") String localPersonId) {
+    public String getCurrentStatusForPerson(Model model,
+            @ModelAttribute("localPersonId") String localPersonId
+    ) {
 
         eUmzugClientService.getCurrentStatusForPerson(localPersonId);
 

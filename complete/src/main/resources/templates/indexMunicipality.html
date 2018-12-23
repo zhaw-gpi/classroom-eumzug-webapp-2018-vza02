@@ -11,7 +11,11 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <h1>Gemeindenverwaltung</h1>
+
     <body>
+        <br>
+        <a th:href="@{/index}" class="btn btn-default">Zurück</a> 
+        <br>
         <a th:href="@{/addMunicipality}" class="btn btn-default">Gemeinde hinzufügen</a>  
         <br>
         <a th:href="@{/deleteMunicipality}" class="btn btn-default">Gemeinde löschen</a> 

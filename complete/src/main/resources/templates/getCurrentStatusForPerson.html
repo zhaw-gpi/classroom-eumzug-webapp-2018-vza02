@@ -8,6 +8,8 @@
     <body>
         <h1>Aktueller Status</h1>
         <br/>
+        <a th:href="@{/indexTransactionLog}" class="btn btn-default">Zurück</a> 
+        <br>
         <div>
             <form th:action="@{/getCurrentStatusForPerson}"
                   th:object="${transactionLog}" method="POST">

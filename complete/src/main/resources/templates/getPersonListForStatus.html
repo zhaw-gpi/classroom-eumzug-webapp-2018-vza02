@@ -8,6 +8,8 @@
     <body>
         <h1>Personenliste nach Status</h1>
         <br/>
+        <a th:href="@{/indexTransactionLog}" class="btn btn-default">Zurück</a> 
+        <br>
         <div class="panel panel-default">
             <div class="panel-heading"><b>Personenliste nach Status</b></div>
             <div class="panel-body">
@@ -18,7 +20,7 @@
                         <th>Nachname</th>
                         <th>Geschlecht</th>
                         <th>Geburstag</th>
-                    </tr>
+                    </tr>s
                     <tr th:each ="person : ${personListe}">
                         <td th:utext="${person.localPersonId}">...</td>
                         <td th:utext="${person.firstName}">...</td>
