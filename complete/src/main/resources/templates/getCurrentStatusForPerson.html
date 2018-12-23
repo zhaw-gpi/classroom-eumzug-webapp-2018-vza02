@@ -1,45 +1,58 @@
-<!-- Formular von Aktueller Status -->
+<!-- Formular von TransactionLog einer Person -->
+<!DOCTYPE HTML>
 
-<html>
-    <!-- Kopfzeile mit Titel "Aktueller Status" -->
+
+<html xmlns:th="http://www.thymeleaf.org">
     <head>
-        <title>Aktueller Status</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="UTF-8" />
+        <title>Transaktions Log für Person Suchen</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     </head>
-    <!-- Body-element von Aktueller Status mit Zurück-Befehl, Eingabefeld für Personen ID und ein Ändern-Button
-    Zusätzlich eine Tabelle für die Ausgabe mit den Reitern ID, Zeitstempel, Status ID und Personen ID-->
     <body>
-        <h1>Aktueller Status für eine Person</h1>
-        <br/>
-        <a th:href="@{/indexTransactionLog}" class="btn btn-default">Zurück</a> 
-        <br>
-        <br>
-        <div>
-            <form th:action="@{/getCurrentStatusForPerson}"
-                  th:object="${person}" method="POST">
-                Personen ID:
-                <input type="text" th:field="*{localPersonId}" />     
-                <br/>
-                <br/>
-                <input type="submit" value="Ändern" />
-            </form>
+        <div class="container-fluid text-center">    
+            <div class="row content">
+                <div class="col-sm-2 sidenav">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Flag_of_Canton_of_Bern.svg/2000px-Flag_of_Canton_of_Bern.svg.png" class="img-rounded" alt="Bern" vspace="50" width="200" height="200"> 
+                </div>
+                <div class="col-sm-8 text-left"> 
+                    <h1> Transaktions Log für Person Suchen </h1>
+                    <p>Geben Sie die Local Person ID ein um de aktuellen Status zu erhalten.</p>
+                    <a th:href="@{/indexTransactionLog}" class="btn btn-default">Zurück</a> 
+                    <hr>
+                    <form th:action="@{/getCurrentStatusForPerson}"
+                          th:object="${person}" method="POST">
+                        Personen ID:
+                        <input type="text" th:field="*{localPersonId}" class="form-control" required/>     
+                        <br/>
+                        <br/>
+                        <input type="submit" value="Suchen" class="btn btn-primary"/>
+                    </form>
+                </div>
+                <br>
+                <br>
+               <table class="table table-striped">
+                    <tr>
+                        <th>ID</th>
+                        <th>Zeitstempel</th>
+                        <th>Status Name</th>
+                        <th>Status Beschrieb</th>
+                        <th>Personen ID</th>
+                    </tr>
+                    <tr>
+                        <td th:utext="${transactionLog.logId}">...</td>
+                        <td th:utext="${transactionLog.logTimeStamp}">...</td>
+                        <td th:utext="${transactionLog.status.name}">...</td>
+                        <td th:utext="${transactionLog.status.germanText}">...</td>
+                        <td th:utext="${transactionLog.person.localPersonId}">...</td>
+                    </tr>
+                </table>
+
+            </div>
         </div>
-        <br/>
-        <br/>
-        <table border="1">
-            <tr>
-                <th>ID</th>
-                <th>Zeitstempel</th>
-                <th>Status ID</th>
-                <th>Personen ID</th>
-            </tr>
-            <tr>
-                <td th:utext="${transactionLog.logId}">...</td>
-                <td th:utext="${transactionLog.logTimeStamp}">...</td>
-                <td th:utext="${transactionLog.status}">...</td>
-                <td th:utext="${transactionLog.person}">...</td>
-            </tr>
-        </table>
-    </body>
+    </div>
+</body>
 </html>
+
