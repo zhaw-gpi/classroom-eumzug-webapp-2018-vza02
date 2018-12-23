@@ -11,8 +11,8 @@
         <br>
         <form th:action="@{/deleteMunicipality}"
               th:object="${municipality}" method="POST">
-            ID:
-            <input type="Integer" th:field="*{Id}" />    
+            ID der zu löschenden Gemeinde:
+            <input type="text" th:field="*{municipalityId}" />    
             <br/>
             <input type="submit" value="Delete" />
         </form>

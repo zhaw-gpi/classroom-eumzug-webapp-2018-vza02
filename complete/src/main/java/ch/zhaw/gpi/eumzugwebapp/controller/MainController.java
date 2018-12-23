@@ -114,13 +114,21 @@ public class MainController {
         return "redirect:/indexMunicipality";
     }
 
-    @RequestMapping(value = {"/deleteMunicipality"}, method = RequestMethod.POST)
-    public String deleteMunicipality(Model model, @ModelAttribute("Id") int Id) {
-        
-        eUmzugClientService.deleteMunicipality(Id);
-        
-        return "redirect:/indexMunicipality";
+    @RequestMapping(value = {"/deleteMunicipality"}, method = RequestMethod.GET)
+    public String showDeleteMunicipalityPage(Model model) {
 
+        Municipality municipality = new Municipality();
+        model.addAttribute("municipality", municipality);
+
+        return "deleteMunicipality";
+    }
+
+    @RequestMapping(value = {"/deleteMunicipality"}, method = RequestMethod.POST)
+    public String deleteMunicipality(Model model, @ModelAttribute("municipality") Municipality municipality) {
+
+        eUmzugClientService.deleteMunicipality(municipality.getMunicipalityId());
+
+        return "redirect:/indexMunicipality";
     }
 
     @RequestMapping(value = {"/getMunicipalityByName"}, method = RequestMethod.GET)
@@ -131,10 +139,19 @@ public class MainController {
         return "indexMunicipality";
     }
 
-    @RequestMapping(value = {"/renameMunicipality"}, method = RequestMethod.POST)
-    public String renameMunicipality(Model model, @ModelAttribute("id") int Id, @ModelAttribute("name") String name) {
+    @RequestMapping(value = {"/renameMunicipality"}, method = RequestMethod.GET)
+    public String showRenameMunicipalityPage(Model model) {
 
-        eUmzugClientService.renameMunicipality(Id, name);
+        Municipality municipality = new Municipality();
+        model.addAttribute("municipality", municipality);
+
+        return "renameMunicipality";
+    }
+
+    @RequestMapping(value = {"/renameMunicipality"}, method = RequestMethod.POST)
+    public String renameMunicipality(Model model, @ModelAttribute("municipality") Municipality municipality) {
+
+        eUmzugClientService.renameMunicipality(municipality.getMunicipalityId(), municipality.getMunicipalityName());
 
         return "redirect:/indexMunicipality";
 
@@ -170,13 +187,13 @@ public class MainController {
 // ----------------------------------------------------------------------------------------------------------//
 // --------------------------------------------TransactionLog------------------------------------------------//
 // ----------------------------------------------------------------------------------------------------------//
-       //Dokumentenliste
+    //Dokumentenliste
     @RequestMapping(value = {"/indexTransactionLog"}, method = RequestMethod.GET)
     public String getTransactionLog(Model model) {
 
         return "indexTransactionLog";
     }
-   
+
     @RequestMapping(value = {"/getPersonListForStatus"}, method = RequestMethod.GET)
     public String getPersonListForStatus(Model model, @ModelAttribute("localPersonId") String localPersonId) {
 

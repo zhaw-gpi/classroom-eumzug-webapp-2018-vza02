@@ -113,7 +113,7 @@ public class EUmzugClientService {
         try {
             HttpEntity<String> request = new HttpEntity<>(statusName);
 
-            ResponseEntity<List<Person>> personListe = restTemplate.exchange(eUmzugClientServiceEndpoint + "transactionlog/status/{statusName}", HttpMethod.GET, request, new ParameterizedTypeReference<List<Person>>() {
+            ResponseEntity<List<Person>> personListe = restTemplate.exchange(eUmzugClientServiceEndpoint + "/transactionlog/status/{statusName}", HttpMethod.GET, request, new ParameterizedTypeReference<List<Person>>() {
             });
 
             return personListe.getBody();
@@ -196,7 +196,7 @@ public class EUmzugClientService {
      * @param name
      */
     public void renameMunicipality(int Id, String name) {
-        restTemplate.put(eUmzugClientServiceEndpoint + "gemeinden/{Id}/{name}", Id, name);
+        restTemplate.put(eUmzugClientServiceEndpoint + "/gemeinden/{Id}/{name}", Id, name);
     }
 
     /**
@@ -214,7 +214,7 @@ public class EUmzugClientService {
      * @param gebuehr
      */
     public void newFee(int id, int gebuehr) {
-        restTemplate.put(eUmzugClientServiceEndpoint + "gemeinden/{id}/move/{Gebuehr}", id, gebuehr);
+        restTemplate.put(eUmzugClientServiceEndpoint + "/gemeinden/{id}/move/{Gebuehr}", id, gebuehr);
     }
 
     /**
@@ -223,7 +223,7 @@ public class EUmzugClientService {
      * @param gebuehr
      */
     public void newFeeIn(int id, int gebuehr) {
-        restTemplate.put(eUmzugClientServiceEndpoint + "gemeinden/{id}/movein/{Gebuehr}", id, gebuehr);
+        restTemplate.put(eUmzugClientServiceEndpoint + "/gemeinden/{id}/movein/{Gebuehr}", id, gebuehr);
     }
 
     /**
@@ -232,6 +232,6 @@ public class EUmzugClientService {
      * @param gebuehr
      */
     public void newFeeOut(int id, int gebuehr) {
-        restTemplate.put(eUmzugClientServiceEndpoint + "gemeinden/{id}/moveout/{Gebuehr}", id, gebuehr);
+        restTemplate.put(eUmzugClientServiceEndpoint + "/gemeinden/{id}/moveout/{Gebuehr}", id, gebuehr);
     }
 }

@@ -2,11 +2,11 @@
 <html xmlns:th="http://www.thymeleaf.org">
     <head>
         <meta charset="UTF-8" />
-        <title>Gemeinde unbenennen</title>
+        <title>Gemeinde umbenennen</title>
         <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
     </head>
     <body>
-        <h1>Gemeinde unbenennen</h1>
+        <h1>Gemeinde umbenennen</h1>
         <br>
         <a th:href="@{/indexMunicipality}" class="btn btn-default">Zurück</a> 
         <br/>
@@ -14,11 +14,14 @@
             <form th:action="@{/renameMunicipality}"
                   th:object="${municipality}" method="POST">
                 Gemeinde unbennenen
-                <input type="text" th:field="*{Id}" />    
+                <br>
+                ID der zu änderden Gemeinde:
+                <input type="text" th:field="*{municipalityId}" />    
                 <br/>
-                <input type="text" th:field="*{name}" />    
+                Neuer Name:
+                <input type="text" th:field="*{municipalityName}" />    
                 <br/>
-                <input type="submit" value="Unbennenen" />
+                <input type="submit" value="Umbennenen" />
             </form>
         </div>
     </body>

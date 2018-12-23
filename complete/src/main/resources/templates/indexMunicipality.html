@@ -33,10 +33,16 @@ and open the template in the editor.
                     <tr>
                         <th>ID</th>
                         <th>Name</th>
+                        <th>Umzugsgebühr</th>
+                        <th>Wegzugsgebühr</th>
+                        <th>Zuzugsgebühr</th>
                     </tr>
                     <tr th:each ="municipality : ${municipalityListe}">
                         <td th:utext="${municipality.municipalityId}">...</td>
                         <td th:utext="${municipality.municipalityName}">...</td>
+                        <td th:utext="${municipality.feeMove}">...</td>
+                        <td th:utext="${municipality.feeMoveIn}">...</td>
+                        <td th:utext="${municipality.feeMoveOut}">...</td>
                     </tr>
                 </table>
             </div>
