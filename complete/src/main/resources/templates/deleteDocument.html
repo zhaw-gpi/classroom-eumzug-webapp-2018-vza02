@@ -7,13 +7,16 @@
     <body>
         <h1>Dokument löschen</h1>
         <br>
-        <a th:href="@{/indexDocument}" class="btn btn-default">Zurück</a>  
+        <a th:href="@{/indexDocument}" class="btn btn-default">Zurück</a>
+        <br>
+        <br>
         <form th:action="@{/deleteDocument}"
               th:object="${document}" method="POST">
             ID:
-            <input type="Integer" th:field="*{id}" />    
+            <input type="Integer" th:field="*{documentId}" />    
             <br/>
-            <input type="submit" value="Delete" />
+            <br/>
+            <input type="submit" value="Löschen" />
         </form>
 
         <br/>

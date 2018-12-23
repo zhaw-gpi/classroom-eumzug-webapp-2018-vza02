@@ -9,10 +9,12 @@
         <br>
         <a th:href="@{/indexMunicipality}" class="btn btn-default">Zurück</a> 
         <br>
+        <br/>
         <form th:action="@{/deleteMunicipality}"
               th:object="${municipality}" method="POST">
             ID der zu löschenden Gemeinde:
             <input type="text" th:field="*{municipalityId}" />    
+            <br/>
             <br/>
             <input type="submit" value="Delete" />
         </form>

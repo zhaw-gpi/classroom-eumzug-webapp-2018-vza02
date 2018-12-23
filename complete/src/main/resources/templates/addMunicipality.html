@@ -7,7 +7,9 @@
     <body>
         <h1>Add a Municipality</h1>
         <br>
-        <a th:href="@{/indexMunicipality}" class="btn btn-default">Zurück</a>  
+        <a th:href="@{/indexMunicipality}" class="btn btn-default">Zurück</a> 
+        <br>
+        <br>
         <form th:action="@{/addMunicipality}"
               th:object="${municipality}" method="POST">
             ID:
@@ -24,6 +26,7 @@
             <br/>
             Wegzugsgebühr:
             <input type="text" th:field="*{feeMoveOut}" /> 
+            <br>
             <br>
             <input type="submit" value="Create" />
         </form>

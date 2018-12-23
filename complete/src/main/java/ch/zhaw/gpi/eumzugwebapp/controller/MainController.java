@@ -4,11 +4,11 @@ import java.util.List;
 
 import ch.zhaw.gpi.eumzugwebapp.resources.Municipality;
 import ch.zhaw.gpi.eumzugwebapp.resources.Document;
-import ch.zhaw.gpi.eumzugwebapp.resources.MunicipalityDocumentRelation;
+import ch.zhaw.gpi.eumzugwebapp.resources.Person;
+import ch.zhaw.gpi.eumzugwebapp.resources.Status;
 import ch.zhaw.gpi.eumzugwebapp.resources.TransactionLog;
 import ch.zhaw.gpi.eumzugwebapp.services.EUmzugClientService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -30,6 +30,11 @@ public class MainController {
 // ----------------------------------------------------------------------------------------------------------//
 
     //Dokumentenliste
+    /**
+     * 
+     * @param model
+     * @return 
+     */
     @RequestMapping(value = {"/indexDocument"}, method = RequestMethod.GET)
     public String getDocumentList(Model model) {
 
@@ -40,6 +45,11 @@ public class MainController {
     }
 
     //Dokument hinzufügen
+    /**
+     * 
+     * @param model
+     * @return 
+     */
     @RequestMapping(value = {"/", "/addDocument"}, method = RequestMethod.GET)
     public String showAddDocumentPage(Model model) {
 
@@ -49,6 +59,12 @@ public class MainController {
         return "addDocument";
     }
 
+    /**
+     * 
+     * @param model
+     * @param document
+     * @return 
+     */
     @RequestMapping(value = {"/addDocument"}, method = RequestMethod.POST)
     public String saveDocument(Model model, @ModelAttribute("document") Document document) {
 
@@ -59,6 +75,11 @@ public class MainController {
     }
 
     //Dokument löschen
+    /**
+     * 
+     * @param model
+     * @return 
+     */
     @RequestMapping(value = {"/", "/deleteDocument"}, method = RequestMethod.GET)
     public String showDeleteDocumentPage(Model model) {
 
@@ -68,23 +89,55 @@ public class MainController {
         return "deleteDocument";
     }
 
+    /**
+     * 
+     * @param model
+     * @param document
+     * @return 
+     */
     @RequestMapping(value = {"/deleteDocument"}, method = RequestMethod.POST)
-    public String deleteDocument(Model model, @ModelAttribute("id") int id) {
+    public String deleteDocument(Model model, @ModelAttribute("document") Document document) {
 
-        eUmzugClientService.deleteDocument(id);
+        eUmzugClientService.deleteDocument(document.getDocumentId());
 
         return "redirect:/indexDocument";
 
     }
 
+    /**
+     * 
+     * @param model
+     * @return 
+     */
     @RequestMapping(value = {"/getDocumentByName"}, method = RequestMethod.GET)
-    public String getDocumentByName(Model model, @ModelAttribute("document") String name) {
+    public String showGetDocumentByNamePage(Model model) {
 
-        eUmzugClientService.getDocumentByName(name);
+        Document document = new Document();
+        model.addAttribute("document", document);
 
-        return "indexDocument";
+        return "getDocumentByName";
     }
 
+    /**
+     * 
+     * @param model
+     * @param document
+     * @return 
+     */
+    @RequestMapping(value = {"/getDocumentByName"}, method = RequestMethod.POST)
+    public String getDocumentByName(Model model, @ModelAttribute("document") Document document) {
+
+        Document newDocument = eUmzugClientService.getDocumentByName(document.getName());
+        model.addAttribute("document", newDocument);
+
+        return "getDocumentByName";
+    }
+
+    /**
+     * 
+     * @param model
+     * @return 
+     */
     @RequestMapping(value = {"/", "/renameDocument"}, method = RequestMethod.GET)
     public String showRenameDocumentPage(Model model) {
 
@@ -94,10 +147,16 @@ public class MainController {
         return "renameDocument";
     }
 
+    /**
+     * 
+     * @param model
+     * @param document
+     * @return 
+     */
     @RequestMapping(value = {"/renameDocument"}, method = RequestMethod.POST)
-    public String renameDocument(Model model, @ModelAttribute("id") int Id, @ModelAttribute("name") String name) {
+    public String renameDocument(Model model, @ModelAttribute("document") Document document) {
 
-        eUmzugClientService.renameDocument(Id, name);
+        eUmzugClientService.renameDocument(document.getDocumentId(), document.getName());
 
         return "redirect:/indexDocument";
 
@@ -107,6 +166,11 @@ public class MainController {
 // ----------------------------------------------GEMEINDEN---------------------------------------------------//
 // ----------------------------------------------------------------------------------------------------------//
     //GEMEINDEN
+    /**
+     * 
+     * @param model
+     * @return 
+     */
     @RequestMapping(value = {"/indexMunicipality"}, method = RequestMethod.GET)
     public String getMunicipalityList(Model model) {
 
@@ -116,6 +180,11 @@ public class MainController {
         return "indexMunicipality";
     }
 
+    /**
+     * 
+     * @param model
+     * @return 
+     */
     @RequestMapping(value = {"/", "/addMunicipality"}, method = RequestMethod.GET)
     public String showAddMunicipalityPage(Model model) {
 
@@ -125,6 +194,12 @@ public class MainController {
         return "addMunicipality";
     }
 
+    /**
+     * 
+     * @param model
+     * @param municipality
+     * @return 
+     */
     @RequestMapping(value = {"/addMunicipality"}, method = RequestMethod.POST)
     public String saveMunicipality(Model model, @ModelAttribute("municipality") Municipality municipality) {
 
@@ -133,6 +208,11 @@ public class MainController {
         return "redirect:/indexMunicipality";
     }
 
+    /**
+     * 
+     * @param model
+     * @return 
+     */
     @RequestMapping(value = {"/deleteMunicipality"}, method = RequestMethod.GET)
     public String showDeleteMunicipalityPage(Model model) {
 
@@ -142,6 +222,12 @@ public class MainController {
         return "deleteMunicipality";
     }
 
+    /**
+     * 
+     * @param model
+     * @param municipality
+     * @return 
+     */
     @RequestMapping(value = {"/deleteMunicipality"}, method = RequestMethod.POST)
     public String deleteMunicipality(Model model, @ModelAttribute("municipality") Municipality municipality) {
 
@@ -150,14 +236,40 @@ public class MainController {
         return "redirect:/indexMunicipality";
     }
 
+    /**
+     * 
+     * @param model
+     * @return 
+     */
     @RequestMapping(value = {"/getMunicipalityByName"}, method = RequestMethod.GET)
-    public String getMunicipalityByName(Model model, @ModelAttribute("municipality") String municipalityName) {
+    public String showGetMunicipalityByNamePage(Model model) {
 
-        eUmzugClientService.getMunicipalityByName(municipalityName);
+        Municipality municipality = new Municipality();
+        model.addAttribute("municipality", municipality);
 
-        return "indexMunicipality";
+        return "getMunicipalityByName";
     }
 
+    /**
+     * 
+     * @param model
+     * @param municipality
+     * @return 
+     */
+    @RequestMapping(value = {"/getMunicipalityByName"}, method = RequestMethod.POST)
+    public String getMunicipalityByName(Model model, @ModelAttribute("municipality") Municipality municipality) {
+
+        Municipality newMunicipality = eUmzugClientService.getMunicipalityByName(municipality.getMunicipalityName());
+        model.addAttribute("municipality", newMunicipality);
+
+        return "getMunicipalityByName";
+    }
+
+    /**
+     * 
+     * @param model
+     * @return 
+     */
     @RequestMapping(value = {"/renameMunicipality"}, method = RequestMethod.GET)
     public String showRenameMunicipalityPage(Model model) {
 
@@ -167,6 +279,12 @@ public class MainController {
         return "renameMunicipality";
     }
 
+    /**
+     * 
+     * @param model
+     * @param municipality
+     * @return 
+     */
     @RequestMapping(value = {"/renameMunicipality"}, method = RequestMethod.POST)
     public String renameMunicipality(Model model, @ModelAttribute("municipality") Municipality municipality) {
 
@@ -176,6 +294,11 @@ public class MainController {
 
     }
 
+    /**
+     * 
+     * @param model
+     * @return 
+     */
     @RequestMapping(value = {"/newFee"}, method = RequestMethod.GET)
     public String showNewFeePage(Model model) {
 
@@ -185,18 +308,26 @@ public class MainController {
         return "newFee";
     }
 
+    /**
+     * 
+     * @param model
+     * @param municipality
+     * @return 
+     */
     @RequestMapping(value = {"/newFee"}, method = RequestMethod.POST)
-    public String newFee(Model model,
-            @ModelAttribute("id") int Id,
-            @ModelAttribute("gebuehr") int gebuehr
-    ) {
+    public String newFee(Model model, @ModelAttribute("municipality") Municipality municipality) {
 
-        eUmzugClientService.newFee(Id, gebuehr);
+        eUmzugClientService.newFee(municipality.getMunicipalityId(), municipality.getFeeMove());
 
         return "redirect:/indexMunicipality";
 
     }
 
+    /**
+     * 
+     * @param model
+     * @return 
+     */
     @RequestMapping(value = {"/newFeeIn"}, method = RequestMethod.GET)
     public String showNewFeeInPage(Model model) {
 
@@ -206,18 +337,27 @@ public class MainController {
         return "newFeeIn";
     }
 
+    /**
+     * 
+     * @param model
+     * @param municipality
+     * @return 
+     */
     @RequestMapping(value = {"/newFeeIn"}, method = RequestMethod.POST)
     public String newFeeIn(Model model,
-            @ModelAttribute("id") int Id,
-            @ModelAttribute("gebuehr") int gebuehr
+            @ModelAttribute("municipality") Municipality municipality
     ) {
 
-        eUmzugClientService.newFeeIn(Id, gebuehr);
+        eUmzugClientService.newFeeIn(municipality.getMunicipalityId(), municipality.getFeeMoveIn());
 
         return "redirect:/indexMunicipality";
-
     }
 
+    /**
+     * 
+     * @param model
+     * @return 
+     */
     @RequestMapping(value = {"/newFeeOut"}, method = RequestMethod.GET)
     public String showNewFeeOutPage(Model model) {
 
@@ -227,13 +367,18 @@ public class MainController {
         return "newFeeOut";
     }
 
+    /**
+     * 
+     * @param model
+     * @param municipality
+     * @return 
+     */
     @RequestMapping(value = {"/newFeeOut"}, method = RequestMethod.POST)
     public String newFeeOut(Model model,
-            @ModelAttribute("id") int Id,
-            @ModelAttribute("gebuehr") int gebuehr
+            @ModelAttribute("municipality") Municipality municipality
     ) {
 
-        eUmzugClientService.newFeeOut(Id, gebuehr);
+        eUmzugClientService.newFeeOut(municipality.getMunicipalityId(), municipality.getFeeMoveOut());
 
         return "redirect:/indexMunicipality";
 
@@ -243,31 +388,76 @@ public class MainController {
 // --------------------------------------------TransactionLog------------------------------------------------//
 // ----------------------------------------------------------------------------------------------------------//
     //Dokumentenliste
+    /**
+     * 
+     * @param model
+     * @return 
+     */
     @RequestMapping(value = {"/indexTransactionLog"}, method = RequestMethod.GET)
     public String getTransactionLog(Model model
     ) {
-
         return "indexTransactionLog";
     }
 
+    /**
+     * 
+     * @param model
+     * @return 
+     */
     @RequestMapping(value = {"/getPersonListForStatus"}, method = RequestMethod.GET)
-    public String getPersonListForStatus(Model model,
-            @ModelAttribute("localPersonId") String localPersonId
-    ) {
+    public String showGetPersonListForStatusPage(Model model) {
 
-        eUmzugClientService.getPersonListForStatus(localPersonId);
+        Status status = new Status();
+        model.addAttribute("status", status);
 
-        return "redirect:/indexTransactionLog";
+        return "getPersonListForStatus";
     }
 
+    /**
+     * 
+     * @param model
+     * @param status
+     * @return 
+     */
+    @RequestMapping(value = {"/getPersonListForStatus"}, method = RequestMethod.POST)
+    public String getPersonListForStatus(Model model, @ModelAttribute("status") Status status) {
+
+        List<Person> personenListe = eUmzugClientService.getPersonListForStatus(status.getName());
+        model.addAttribute("personenListe", personenListe);
+
+        return "getPersonListForStatus";
+    }
+
+    /**
+     * 
+     * @param model
+     * @return 
+     */
     @RequestMapping(value = {"/getCurrentStatusForPerson"}, method = RequestMethod.GET)
-    public String getCurrentStatusForPerson(Model model,
-            @ModelAttribute("localPersonId") String localPersonId
-    ) {
+    public String showGetCurrentStatusForPersonPage(Model model) {
 
-        eUmzugClientService.getCurrentStatusForPerson(localPersonId);
+        Person person = new Person();
+        model.addAttribute("person", person);
 
-        return "redirect:/indexTransactionLog";
+        TransactionLog transactionLog = new TransactionLog();
+        model.addAttribute("transactionLog", transactionLog);
+
+        return "getCurrentStatusForPerson";
+    }
+
+    /**
+     * 
+     * @param model
+     * @param person
+     * @return 
+     */
+    @RequestMapping(value = {"/getCurrentStatusForPerson"}, method = RequestMethod.POST)
+    public String getCurrentStatusForPerson(Model model, @ModelAttribute("person") Person person) {
+
+        TransactionLog transactionLog = eUmzugClientService.getCurrentStatusForPerson(person.getLocalPersonId());
+        model.addAttribute("transactionLog", transactionLog);
+
+        return "getCurrentStatusForPerson";
     }
 
 }

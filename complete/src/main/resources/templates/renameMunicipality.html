@@ -8,19 +8,21 @@
     <body>
         <h1>Gemeinde umbenennen</h1>
         <br>
-        <a th:href="@{/indexMunicipality}" class="btn btn-default">Zurück</a> 
-        <br/>
+        <a th:href="@{/indexMunicipality}" class="btn btn-default">Zurück</a>
+        <br>
+        <br>
         <div>
             <form th:action="@{/renameMunicipality}"
                   th:object="${municipality}" method="POST">
                 Gemeinde unbennenen
                 <br>
-                ID der zu änderden Gemeinde:
+                ID der zu ändernden Gemeinde:
                 <input type="text" th:field="*{municipalityId}" />    
                 <br/>
                 Neuer Name:
-                <input type="text" th:field="*{municipalityName}" />    
-                <br/>
+                <input type="text" th:field="*{municipalityName}" /> 
+                <br>
+                <br>
                 <input type="submit" value="Umbennenen" />
             </form>
         </div>

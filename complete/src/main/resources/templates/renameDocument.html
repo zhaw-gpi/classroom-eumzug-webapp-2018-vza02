@@ -2,21 +2,27 @@
 <html xmlns:th="http://www.thymeleaf.org">
     <head>
         <meta charset="UTF-8" />
-        <title>Dokumenten unbenennen</title>
+        <title>Dokumenten umbenennen</title>
     </head>
     <body>
-        <h1>Dokumenten unbenennen</h1>
+        <h1>Dokumenten umbenennen</h1>
         <br/>
         <a th:href="@{/indexDocument}" class="btn btn-default">Zurück</a>  
+        <br>
+        <br>
         <div>
             <form th:action="@{/renameDocument}"
                   th:object="${document}" method="POST">
-                Dokument unbennenen:
-                <input type="Integer" th:field="*{Id}" />    
+                Dokument umbennenen
+                <br>
+                ID des zu ändernden Dokuments
+                <input type="Integer" th:field="*{documentId}" />    
                 <br/>
+                Neuer Name:
                 <input type="String" th:field="*{name}" />    
                 <br/>
-                <input type="submit" value="Unbennenen" />
+                <br/>
+                <input type="submit" value="Umbennenen" />
             </form>
         </div>
     </body>

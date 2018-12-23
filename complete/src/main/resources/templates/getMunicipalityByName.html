@@ -7,15 +7,36 @@
     <body>
         <h1>Gemeinde suchen</h1>
         <br>
-        <a th:href="@{/indexMunicipality}" class="btn btn-default">Zurück</a> 
+        <a th:href="@{/indexMunicipality}" class="btn btn-default">Zurück</a>
+        <br>
+        <br>
         <div>
             <form th:action="@{/getMunicipalityByName}"
-                  th:object="${municipality}" method="GET">
+                  th:object="${municipality}" method="POST">
                 Name der Gemeinde
                 <input type="text" th:field="*{municipalityName}" />    
                 <br/>
+                <br>
                 <input type="submit" value="Suchen" />
             </form>
+            <br>
+            <br>
+            <table border="1">
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Umzugsgebühr</th>
+                    <th>Wegzugsgebühr</th>
+                    <th>Zuzugsgebühr</th>
+                </tr>
+                <tr>
+                    <td th:utext="${municipality.municipalityId}">...</td>
+                    <td th:utext="${municipality.municipalityName}">...</td>
+                    <td th:utext="${municipality.feeMove}">...</td>
+                    <td th:utext="${municipality.feeMoveIn}">...</td>
+                    <td th:utext="${municipality.feeMoveOut}">...</td>
+                </tr>
+            </table>
         </div>
     </body>
 </html>

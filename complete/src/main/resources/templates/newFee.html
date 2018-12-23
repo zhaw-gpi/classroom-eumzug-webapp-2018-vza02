@@ -7,16 +7,19 @@
     <body>
         <h1>Neue Gebühr</h1>
         <br>
-        <a th:href="@{/indexMunicipality}" class="btn btn-default">Zurück</a> 
-
+        <a th:href="@{/indexMunicipality}" class="btn btn-default">Zurück</a>
+        <br>
+        <br>
         <div>
             <form th:action="@{/newFee}"
-                  th:object="${Municipality}" method="POST">
-                Neue Gebühr:
-                <input type="Integer" th:field="*{Id}" />    
+                  th:object="${municipality}" method="POST">
+                Gemeiden ID:
+                <input type="Integer" th:field="*{municipalityId}" />    
                 <br/>
-                <input type="Integer" th:field="*{gebuehr}" />    
+                Neue Umzugsgebühr:
+                <input type="Integer" th:field="*{feeMove}" />    
                 <br/>
+                <br>
                 <input type="submit" value="Ändern" />
             </form>
         </div>

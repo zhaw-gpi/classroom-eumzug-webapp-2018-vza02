@@ -6,18 +6,36 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        <h1>Aktueller Status</h1>
+        <h1>Aktueller Status für eine Person</h1>
         <br/>
         <a th:href="@{/indexTransactionLog}" class="btn btn-default">Zurück</a> 
         <br>
+        <br>
         <div>
             <form th:action="@{/getCurrentStatusForPerson}"
-                  th:object="${transactionLog}" method="POST">
-                Name:
+                  th:object="${person}" method="POST">
+                Personen ID:
                 <input type="text" th:field="*{localPersonId}" />     
+                <br/>
                 <br/>
                 <input type="submit" value="Ändern" />
             </form>
         </div>
+        <br/>
+        <br/>
+        <table border="1">
+            <tr>
+                <th>ID</th>
+                <th>Zeitstempel</th>
+                <th>Status ID</th>
+                <th>Personen ID</th>
+            </tr>
+            <tr>
+                <td th:utext="${transactionLog.logId}">...</td>
+                <td th:utext="${transactionLog.logTimeStamp}">...</td>
+                <td th:utext="${transactionLog.status}">...</td>
+                <td th:utext="${transactionLog.person}">...</td>
+            </tr>
+        </table>
     </body>
 </html>

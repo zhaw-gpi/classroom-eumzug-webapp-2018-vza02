@@ -10,19 +10,33 @@
         <br/>
         <a th:href="@{/indexTransactionLog}" class="btn btn-default">Zurück</a> 
         <br>
+        <br>
+        <form th:action="@{/getPersonListForStatus}"
+              th:object="${status}" method="POST">
+            Name des Statuses
+            <input type="text" th:field="*{name}" />    
+            <br/>
+            <br>
+            <input type="submit" value="Suchen" />
+        </form>
+        <br>
+        <br>
+
         <div class="panel panel-default">
             <div class="panel-heading"><b>Personenliste nach Status</b></div>
             <div class="panel-body">
                 <table border="1">
                     <tr>
                         <th>ID</th>
+                        <th>AHV-Nummer</th>
                         <th>Vorname</th>
                         <th>Nachname</th>
                         <th>Geschlecht</th>
                         <th>Geburstag</th>
-                    </tr>s
-                    <tr th:each ="person : ${personListe}">
+                    </tr>
+                    <tr th:each ="person : ${personenListe}">
                         <td th:utext="${person.localPersonId}">...</td>
+                        <td th:utext="${person.vn}">...</td>
                         <td th:utext="${person.firstName}">...</td>
                         <td th:utext="${person.officialName}">...</td>
                         <td th:utext="${person.sex}">...</td>
