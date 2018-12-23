@@ -1,11 +1,15 @@
-<!DOCTYPE HTML>
+<!-- Formular von Gemeinde hinzufügen -->
+
 <html xmlns:th="http://www.thymeleaf.org">
+    <!-- Kopfzeile mit Titel "Gemeinde hinzufügen" -->
     <head>
         <meta charset="UTF-8" />
-        <title>Add Municipality</title>
+        <title>Gemeinde hinzufügen</title>
     </head>
+    <!-- Body-element von Gemeinde hinzufügen mit Zurück-Befehl, Eingabefeld für ID, Name, Gebühr, Zuzugsgebühr und Wegzugsgebühr 
+    Zusätzlich ein Erstellen-Button im Body-element -->    
     <body>
-        <h1>Add a Municipality</h1>
+        <h1>Gemeinde hinzufügen</h1>
         <br>
         <a th:href="@{/indexMunicipality}" class="btn btn-default">Zurück</a> 
         <br>
@@ -28,7 +32,7 @@
             <input type="text" th:field="*{feeMoveOut}" /> 
             <br>
             <br>
-            <input type="submit" value="Create" />
+            <input type="submit" value="Erstellen" />
         </form>
     </body>
 </html>

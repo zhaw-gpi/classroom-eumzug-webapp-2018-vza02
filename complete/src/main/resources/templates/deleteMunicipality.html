@@ -1,9 +1,12 @@
-<!DOCTYPE HTML>
+<!-- Formular von Gemeinde löschen -->
+
 <html xmlns:th="http://www.thymeleaf.org">
+    <!-- Kopfzeile mit Titel "Gemeinde löschen" -->
     <head>
         <meta charset="UTF-8" />
         <title>Gemeinde löschen</title>
     </head>
+    <!-- Body-element von Gemeinde löschen mit Zurück-Befehl, Eingabefeld für ID der zu löschenden Gemeinde und ein Löschen-Button -->
     <body>
         <h1>Gemeinde löschen</h1>
         <br>
@@ -16,7 +19,7 @@
             <input type="text" th:field="*{municipalityId}" />    
             <br/>
             <br/>
-            <input type="submit" value="Delete" />
+            <input type="submit" value="Löschen" />
         </form>
 
         <br/>
