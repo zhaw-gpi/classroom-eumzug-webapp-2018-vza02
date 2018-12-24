@@ -6,7 +6,7 @@ import java.util.Date;
 /**
  * Enitity-Klasse für Bewegungsdaten zu einem Transaktions-Log-Eintrag der Umzugsplattform
  * 
- * @author scep
+ * @author VZa02
  */
 public class TransactionLog implements Serializable {
 

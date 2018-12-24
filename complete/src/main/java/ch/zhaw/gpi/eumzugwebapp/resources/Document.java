@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * Enitity-Klasse für Stammdaten zu einem Dokument
  *
- * @author scep
+ * @author VZa02
  */
 public class Document implements Serializable {
 

@@ -6,9 +6,8 @@ import java.io.Serializable;
 /**
  * Enitity-Klasse für Status zu einem Transaktions-Log-Eintrag der Umzugsplattform
  * 
- * @author scep
+ * @author VZa02
  */
-
 public class Status implements Serializable {
     // Automatisch generierte Id
     private Long id;

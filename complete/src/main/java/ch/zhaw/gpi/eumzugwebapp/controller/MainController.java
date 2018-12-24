@@ -15,56 +15,72 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+/**
+ * Die Klasse ist fÃ¼r alle Abfragen zustÃ¤ndig. Sie leitet den jeweiligen Link
+ * weiter und fÃ¼llt die htmls mit Inhalt. Es gibt pro HTML eine GET-Methode mit
+ * dem Namen show.....Page, welche das HTML mit leeren Inhalt fÃ¼llt z.B. einem
+ * Objekt. Ausserdem gibt es eine POST Methode zu jedem HTML file, welche
+ * aufgerufen wird, wenn auf dem HTML ein Button geklickt wird. Die Methoden
+ * rufen Ã¼ber den eUmzugClientService die API von der EUmzug Plattform auf.
+ *
+ * @author VZa02
+ */
 @Controller
 public class MainController {
-    
-    //BITTE KOMMENTIEREN
+
+    // Entsprechende Bean wird instanziert, Referenz ist vorhanden
     @Autowired
     private EUmzugClientService eUmzugClientService;
 
+    /**
+     * Startseite der Webapp
+     *
+     * @param model
+     * @return Gibt View zurÃ¼ck die geladen werden soll
+     */
     @RequestMapping(value = {"/", "/index"}, method = RequestMethod.GET)
     public String index(Model model) {
         return "index";
     }
+
 // ----------------------------------------------------------------------------------------------------------//
 // ----------------------------------------------DOKUMENTE---------------------------------------------------//
 // ----------------------------------------------------------------------------------------------------------//
-
-     /**
-     * Dokumentenliste
-     * Alle Dokumente werden geholt und Liste wird ins Model gespeichert.
+    /**
+     * Dokumentenliste. Alle Dokumente werden geholt und Liste wird ins Model
+     * gespeichert.
+     *
      * @param model Wird auomatisch von Spring mitgegeben
-     * @return Gibt die aktuelle Seite zurück
+     * @return Gibt die aktuelle Seite zurÃ¼ck
      */
     @RequestMapping(value = {"/indexDocument"}, method = RequestMethod.GET)//Mappt die Funktion mit dem URL Aufruf
     public String getDocumentList(Model model) {
 
         List<Document> documentListe = eUmzugClientService.getDocumentList();//Dokumente von eUmzugService werden geholt und in "documentListe" gespeichert.
-        model.addAttribute("documentListe", documentListe);//Das Model wird mit Attributen befüllt damit die View auf diese Attribute zugreifen kann
+        model.addAttribute("documentListe", documentListe);//Das Model wird mit Attributen befÃ¼llt damit die View auf diese Attribute zugreifen kann
 
-        return "indexDocument";//Gibt die View zurück die geladen werden soll
+        return "indexDocument";//Gibt die View zurÃ¼ck die geladen werden soll
     }
 
-    
-    /***
-     * Dokument hinzufügen
-     * 
+    /**
+     * Dokument hinzufÃ¼gen
+     *
      * @param model Wird automatisch von Spring mitgegeben
      * @return Gibt View zurÃ¼ck die geladen werden soll
      */
-
     @RequestMapping(value = {"/", "/addDocument"}, method = RequestMethod.GET)//Mappt die Funktion mit dem URL Aufruf
     public String showAddDocumentPage(Model model) {
 
         Document document = new Document();//Erstellung von leerem Dokument
-        model.addAttribute("document", document);//Das Model wird mit Attributen befüllt damit die View auf diese Attribute zugreifen kann
+        model.addAttribute("document", document);//Das Model wird mit Attributen befÃ¼llt damit die View auf diese Attribute zugreifen kann
 
-        return "addDocument";//Gibt View zurück die geladen werden soll
+        return "addDocument";//Gibt View zurÃ¼ck die geladen werden soll
     }
 
-    /***
-     * Dokument speichern
-     * Speichert das Dokument wenn in der View "addDocument" ein Post ausgeführt wird
+    /**
+     * Dokument speichern Speichert das Dokument wenn in der View "addDocument"
+     * ein Post ausgefÃ¼hrt wird
+     *
      * @param model Wird automatisch von Spring mitgegeben
      * @param document Wird aus dem Model vom Spring Framework ausgelesen
      * @return Weiterleitung auf die Seite "indexDocument"
@@ -72,19 +88,19 @@ public class MainController {
     @RequestMapping(value = {"/addDocument"}, method = RequestMethod.POST)//Mappt die Funktion mit dem Absenden eines Formulars
     public String saveDocument(Model model, @ModelAttribute("document") Document document) {
 
-        eUmzugClientService.addDocument(document);//Speichert das Dokument über den EUmzugClientService
+        eUmzugClientService.addDocument(document);//Speichert das Dokument Ã¼ber den EUmzugClientService
 
         return "redirect:/indexDocument";//Weiterleitung auf die Seite "indexDocument"
 
     }
 
-     /***
-     * Dokument anzeigen vor Lösung
-     * Bereitet das Model für die Seite auf wo die Dokumente gelöscht werden können
+    /**
+     * Dokument anzeigen vor LÃ¶sung Bereitet das Model fÃ¼r die Seite auf wo die
+     * Dokumente gelÃ¶scht werden kÃ¶nnen
+     *
      * @param model Wird automatisch von Spring mitgegeben
      * @return Laden der View "deletDocument"
      */
-
     @RequestMapping(value = {"/deleteDocument"}, method = RequestMethod.GET)//Mappt die Funktion mit dem URL Aufruf
     public String showDeleteDocumentPage(Model model) {
 
@@ -93,26 +109,26 @@ public class MainController {
 
         return "deleteDocument";//Laden der View "deletDocument"
     }
-    
-    /***
-     * Doument löschen
-     * Löscht Doument beim Absenden des Formulars
+
+    /**
+     * Doument lÃ¶schen. LÃ¶scht Doument beim Absenden des Formulars
+     *
      * @param model Wird automatisch von Spring mitgegeben
-     * @param id ID des Dokuments
+     * @param document Das Dokument mit Inhalt von der ID
      * @return Weiterleitung auf View "IndexDocument"
      */
-
     @RequestMapping(value = {"/deleteDocument"}, method = RequestMethod.POST)//Mappt die Funktion mit dem Absenden eines Forulars
     public String deleteDocument(Model model, @ModelAttribute("document") Document document) {
 
-        eUmzugClientService.deleteDocument(document.getDocumentId());//Löscht das Dokument im Backend
+        eUmzugClientService.deleteDocument(document.getDocumentId());//LÃ¶scht das Dokument im Backend Ã¼ber die Dokument-ID
 
         return "redirect:/indexDocument";//Weiterleitung auf View "IndexDocument"
 
     }
 
     /**
-     * BITTE TITEL UND ZWECK KOMMENTIEREN 
+     * Gibt die Anfangsview zurÃ¼ck, um ein Dokument nach seinem Namen zu suchen
+     *
      * @param model Wird automatisch von Spring mitgegeben
      * @return Laden der View "getDocumentByName"
      */
@@ -120,28 +136,30 @@ public class MainController {
     public String showGetDocumentByNamePage(Model model) {
 
         Document document = new Document();//Instanzieren von leerem Dokument
-        model.addAttribute("document", document);//Das Model wird mit Attributen befüllt damit die View auf diese Attribute zugreifen kann
+        model.addAttribute("document", document);//Das Model wird mit Attributen befÃ¼llt damit die View auf diese Attribute zugreifen kann
 
         return "getDocumentByName"; //Laden der View "getDocumentByName"
     }
 
     /**
-     * BITTE TITEL UND ZWECK KOMMENTIEREN 
+     * Sucht ein Dokument anhand seines Namens
+     *
      * @param model
      * @param document
-     * @return 
+     * @return
      */
     @RequestMapping(value = {"/getDocumentByName"}, method = RequestMethod.POST)//Mappt die Funktion mit dem Absenden eines Forulars
     public String getDocumentByName(Model model, @ModelAttribute("document") Document document) {
 
-        Document newDocument = eUmzugClientService.getDocumentByName(document.getName());//BITTE KOMMENTIEREN
-        model.addAttribute("document", newDocument);//Das Model wird mit Attributen befüllt damit die View auf diese Attribute zugreifen kann
+        Document newDocument = eUmzugClientService.getDocumentByName(document.getName());//Sucht ein Dokument anhand seines Namens
+        model.addAttribute("document", newDocument);//Das Model wird mit Attributen befÃ¼llt damit die View auf diese Attribute zugreifen kann
 
         return "getDocumentByName";//Laden der View "getDocumentByName"
     }
 
-     /***
-     * Anzeige umbennater Dokumente
+    /**
+     * Anzeige um Dokumente umzubenennen
+     *
      * @param model Wird automatisch von Spring mitgegeben
      * @return Laden der View "renameDocument"
      */
@@ -154,105 +172,106 @@ public class MainController {
         return "renameDocument";//Laden der View "renameDocument"
     }
 
-     /*** 
-     * Dokument Umbennenung
-     * Benennt das Dokument um, wenn das Formular "RenameDocument" abgesendet wird
+    /**
+     * Dokument Umbennenung Benennt das Dokument um, wenn das Formular
+     * "RenameDocument" abgesendet wird
+     *
      * @param model Wird automatisch von Spring mitgegeben
-     * @param Id ID des Dokuement , welche von View gesetzt wird
-     * @param name Name des Dokuments, welches von der View gesetzt wird
+     * @param document Dokument, welches eine ID und einen Namen beinhaltet
      * @return Weiterleitung zur View "IndexDocument"
      */
     @RequestMapping(value = {"/renameDocument"}, method = RequestMethod.POST)//Mappt die Funktion mit dem Absenden eines Forulars
     public String renameDocument(Model model, @ModelAttribute("document") Document document) {
 
-        eUmzugClientService.renameDocument(document.getDocumentId(), document.getName());//Umbennenung im Backend
+        eUmzugClientService.renameDocument(document.getDocumentId(), document.getName());//Umbennenung im Backend Ã¼ber die ID und den neuen Namen
 
         return "redirect:/indexDocument";//Weiterleitung zur View "IndexDocument"
-
     }
 
 // ----------------------------------------------------------------------------------------------------------//
 // ----------------------------------------------GEMEINDEN---------------------------------------------------//
 // ----------------------------------------------------------------------------------------------------------//
-    //GEMEINDEN
     /**
-     * Liste der Gemeinden
-     * Alle Gemeinden werden geholt und Liste wird ins Model gespeichert.
+     * Liste der Gemeinden. Alle Gemeinden werden geholt und Liste wird ins
+     * Model gespeichert.
+     *
      * @param model Wird auomatisch von Spring mitgegeben
      * @return Gibt die aktuelle Seite zurÃ¼ck
      */
-
     @RequestMapping(value = {"/indexMunicipality"}, method = RequestMethod.GET)//Mappt die Funktion mit dem URL Aufruf
     public String getMunicipalityList(Model model) {
 
         List<Municipality> municipalityListe = eUmzugClientService.getMunicipalityList();        //Gemeinden von EUmzugClientService werden geholt und in "Liste" gespeichert.
-        model.addAttribute("municipalityListe", municipalityListe); //Das Model wird mit Attributen befüllt damit die View auf diese Attribute zugreifen kann
+        model.addAttribute("municipalityListe", municipalityListe); //Das Model wird mit Attributen befÃ¼llt damit die View auf diese Attribute zugreifen kann
 
-        return "indexMunicipality";//Gibt die View zurück die geladen werden soll
+        return "indexMunicipality";//Gibt die View zurÃ¼ck die geladen werden soll
     }
 
     /**
-     * Gemeinde hinzufügen
+     * Gemeinde hinzufÃ¼gen
+     *
      * @param model Wird automatisch von Spring mitgegeben
-     * @return Gibt View zurück die geladen werden soll
+     * @return Gibt View zurÃ¼ck die geladen werden soll
      */
     @RequestMapping(value = {"/", "/addMunicipality"}, method = RequestMethod.GET)//Mappt die Funktion mit dem URL Aufruf
     public String showAddMunicipalityPage(Model model) {
 
-        Municipality municipality = new Municipality();//Instanzierung von leerem Dokument, welches Model bereitgestellt wird, damit es die View verarbeiten kann
-        model.addAttribute("municipality", municipality);//Das Model wird mit Attributen befüllt damit die View auf diese Attribute zugreifen kann
+        Municipality municipality = new Municipality();//Instanzierung von leerer Gemeinde, welches Model bereitgestellt wird, damit es die View verarbeiten kann
+        model.addAttribute("municipality", municipality);//Das Model wird mit Attributen befÃ¼llt damit die View auf diese Attribute zugreifen kann
 
-        return "addMunicipality";//Gibt View zurück die geladen werden soll
+        return "addMunicipality";//Gibt View zurÃ¼ck die geladen werden soll
     }
 
     /**
-     * Gemeinde speichern
-     * Speichert die Gemeinde, wenn auf der Seite ein Post ausgeführt wird
+     * Gemeinde speichern Speichert die Gemeinde, wenn auf der Seite ein Post
+     * ausgefÃ¼hrt wird
+     *
      * @param model Wird automatisch von Spring mitgegeben
      * @param municipality Wird automatisch von Spring mitgegeben
      * @return Weiterleitung auf die Seite "indexMuniciplaity"
      */
-    @RequestMapping(value = {"/addMunicipality"}, method = RequestMethod.POST)//Mappt die Funktion mit dem Absenden eines Forulars
+    @RequestMapping(value = {"/addMunicipality"}, method = RequestMethod.POST)//Mappt die Funktion mit dem Absenden eines Formulars
     public String saveMunicipality(Model model, @ModelAttribute("municipality") Municipality municipality) {
 
-        eUmzugClientService.addMunicipality(municipality);//Speichert das Dokument über den EUmzugClientService
+        eUmzugClientService.addMunicipality(municipality);//Speichert die Gemeinde Ã¼ber den EUmzugClientService
 
         return "redirect:/indexMunicipality";//Weiterleitung auf die Seite "indexMunicipality"
     }
 
     /**
-     * Gemeinde anzeigen vor Löschung
-     * Bereitet das Model für die Seite auf wo die Gemeinden gelöscht werden können
+     * Gemeinde anzeigen vor LÃ¶schung Bereitet das Model fÃ¼r die Seite auf wo
+     * die Gemeinden gelÃ¶scht werden kÃ¶nnen
+     *
      * @param model Wird automatisch von Spring mitgegeben
      * @return Laden der View "deletMunicipality"
      */
     @RequestMapping(value = {"/deleteMunicipality"}, method = RequestMethod.GET)//Mappt die Funktion mit dem URL Aufruf
     public String showDeleteMunicipalityPage(Model model) {
 
-        Municipality municipality = new Municipality();//Instanzierung eines leeren Dokuments
-        model.addAttribute("municipality", municipality);//Setzten des Dokumens auf das Model, damit beispielsweise die View darauf zugreifen kann
+        Municipality municipality = new Municipality();//Instanzierung einer leeren Gemeinde
+        model.addAttribute("municipality", municipality);//Setzten der Gemeinde auf das Model, damit beispielsweise die View darauf zugreifen kann
 
-        
         return "deleteMunicipality";//Weiterleiten auf die angegebene View
     }
 
     /**
-     * Gemeinde löschen
-     * Löscht Gemeinde beim Absenden des Formulars
+     * Gemeinde lÃ¶schen. LÃ¶scht Gemeinde beim Absenden des Formulars
+     *
      * @param model Wird automatisch von Spring mitgegeben
      * @param municipality Wird automatisch von Spring mitgegeben
      * @return //Weiterleiten auf die angegebene View
      */
-    @RequestMapping(value = {"/deleteMunicipality"}, method = RequestMethod.POST)//Mappt die Funktion mit dem Absenden eines Forulars
+    @RequestMapping(value = {"/deleteMunicipality"}, method = RequestMethod.POST)//Mappt die Funktion mit dem Absenden eines Formulars
     public String deleteMunicipality(Model model, @ModelAttribute("municipality") Municipality municipality) {
 
-        eUmzugClientService.deleteMunicipality(municipality.getMunicipalityId());//Löscht das Dokument im Backend
+        eUmzugClientService.deleteMunicipality(municipality.getMunicipalityId());//LÃ¶scht die Gemeinde im Backend Ã¼ber die ID
 
         return "redirect:/indexMunicipality";//Weiterleiten auf die angegebene View
     }
 
     /**
-     * BITTE KOMMENTIEREN mit ZWECK UND TITEL
+     * Anzeige um Gemeinden umzubenennen
+     *
      * @param model Wird automatisch von Spring mitgegeben
      * @return Laden der View
      */
@@ -260,13 +279,14 @@ public class MainController {
     public String showGetMunicipalityByNamePage(Model model) {
 
         Municipality municipality = new Municipality();//Instanzierung von leeren Gemeinde Objekt
-        model.addAttribute("municipality", municipality);//Das Model wird mit Attributen befüllt damit die View auf diese Attribute zugreifen kann
+        model.addAttribute("municipality", municipality);//Das Model wird mit Attributen befÃ¼llt damit die View auf diese Attribute zugreifen kann
 
         return "getMunicipalityByName";//Laden der View
     }
 
     /**
-     * BITTE ZWECK UND TITEL KOMMENTIEREN
+     * Sucht eine Gemeinde anhand des Namens
+     *
      * @param model Wird automatisch von Spring mitgegeben
      * @param municipality Wird automatisch von Spring mitgegeben
      * @return Laden der View
@@ -274,14 +294,15 @@ public class MainController {
     @RequestMapping(value = {"/getMunicipalityByName"}, method = RequestMethod.POST)//Mappt die Funktion mit dem Absenden eines Forulars
     public String getMunicipalityByName(Model model, @ModelAttribute("municipality") Municipality municipality) {
 
-        Municipality newMunicipality = eUmzugClientService.getMunicipalityByName(municipality.getMunicipalityName());//BITTE KOMMENTIEREN
-        model.addAttribute("municipality", newMunicipality);//Das Model wird mit Attributen befüllt damit die View auf diese Attribute zugreifen kann
+        Municipality newMunicipality = eUmzugClientService.getMunicipalityByName(municipality.getMunicipalityName()); //Sucht eine Gemeinde anhand des Namens
+        model.addAttribute("municipality", newMunicipality);//Das Model wird mit Attributen befÃ¼llt damit die View auf diese Attribute zugreifen kann
 
         return "getMunicipalityByName";//Laden der View
     }
 
     /**
-     * Anzeige unbennanter Dokumente
+     * Anzeige um Gemeinden umzubennennen
+     *
      * @param model Wird automatisch von Spring mitgegeben
      * @return Laden der angegebenen View
      */
@@ -295,8 +316,9 @@ public class MainController {
     }
 
     /**
-     * Umbennenung Gemeinde
-     * Bennent die Gemeinde um, wenn das Formular "renameMunicipality" abgesendet wird
+     * Umbennenung Gemeinde. Bennent die Gemeinde um, wenn das Formular
+     * "renameMunicipality" abgesendet wird
+     *
      * @param model Wird automatisch von Spring mitgegeben
      * @param municipality Wird automatisch von Spring mitgegeben
      * @return Weiterleitung zur View "IndexMunicipality"
@@ -304,14 +326,15 @@ public class MainController {
     @RequestMapping(value = {"/renameMunicipality"}, method = RequestMethod.POST)//Mappt die Funktion mit dem Absenden eines Forulars
     public String renameMunicipality(Model model, @ModelAttribute("municipality") Municipality municipality) {
 
-        eUmzugClientService.renameMunicipality(municipality.getMunicipalityId(), municipality.getMunicipalityName()); //Umbennenung im Backend
+        eUmzugClientService.renameMunicipality(municipality.getMunicipalityId(), municipality.getMunicipalityName()); //Umbennenung im Backend Ã¼ber die ID und des neuen Namens
 
         return "redirect:/indexMunicipality";//Weiterleitung zur View "IndexMunicipality"
 
     }
 
     /**
-     * Umzugsgebühr anzeigen
+     * UmzugsgebÃ¼hr anzeigen
+     *
      * @param model Wird automatisch von Spring mitgegeben
      * @return Laden der angegebenen View "newFee"
      */
@@ -325,7 +348,8 @@ public class MainController {
     }
 
     /**
-     * Neue Umzugsgebühr
+     * Neue UmzugsgebÃ¼hr
+     *
      * @param model Wird automatisch von Spring mitgegeben
      * @param municipality Wird automatisch von Spring mitgegeben
      * @return Weiterleitung zur angegebenen View
@@ -333,14 +357,15 @@ public class MainController {
     @RequestMapping(value = {"/newFee"}, method = RequestMethod.POST)//Mappt die Funktion mit dem Absenden eines Forulars
     public String newFee(Model model, @ModelAttribute("municipality") Municipality municipality) {
 
-        eUmzugClientService.newFee(municipality.getMunicipalityId(), municipality.getFeeMove());//Setzten der Umzugsgebühr im Backend
+        eUmzugClientService.newFee(municipality.getMunicipalityId(), municipality.getFeeMove());//Setzten der UmzugsgebÃ¼hr im Backend Ã¼ber die ID und der neuen GebÃ¼hr
 
         return "redirect:/indexMunicipality";//Weiterleitung zur angegebenen View
 
     }
 
     /**
-     * Zuzugsgebühr anzeigen
+     * ZuzugsgebÃ¼hr anzeigen
+     *
      * @param model Wird automatisch von Spring mitgegeben
      * @return Laden der angegebenen View "newFeeIn"
      */
@@ -354,23 +379,23 @@ public class MainController {
     }
 
     /**
-     * Neue Zuzugsgebühr
+     * Neue ZuzugsgebÃ¼hr
+     *
      * @param model Wird automatisch von Spring mitgegeben
      * @param municipality Wird automatisch von Spring mitgegeben
      * @return Weiterleitung zur angegebenen View
      */
     @RequestMapping(value = {"/newFeeIn"}, method = RequestMethod.POST)//Mappt die Funktion mit dem Absenden eines Forulars
-    public String newFeeIn(Model model,
-            @ModelAttribute("municipality") Municipality municipality
-    ) {
+    public String newFeeIn(Model model, @ModelAttribute("municipality") Municipality municipality) {
 
-        eUmzugClientService.newFeeIn(municipality.getMunicipalityId(), municipality.getFeeMoveIn());//Setzten der Zuzugsgebühr im Backend
+        eUmzugClientService.newFeeIn(municipality.getMunicipalityId(), municipality.getFeeMoveIn());//Setzten der ZuzugsgebÃ¼hr im Backend Ã¼ber die ID und der neuen GebÃ¼hr
 
         return "redirect:/indexMunicipality";//Weiterleitung zur angegebenen View
     }
 
     /**
-     * Wegzugsgebühr anzeigen
+     * WegzugsgebÃ¼hr anzeigen
+     *
      * @param model Wird automatisch von Spring mitgegeben
      * @return Anzeige der angegebenen View
      */
@@ -384,17 +409,18 @@ public class MainController {
     }
 
     /**
-     * Neue Wegzugsgebühr
-     * @param model
+     * Neue WegzugsgebÃ¼hr
+     *
+     * @param model Wird automatisch von Spring mitgegeben
      * @param municipality
-     * @return 
+     * @return Anzeige der angegebenen View
      */
     @RequestMapping(value = {"/newFeeOut"}, method = RequestMethod.POST)//Mappt die Funktion mit dem Absenden eines Forulars
     public String newFeeOut(Model model,
             @ModelAttribute("municipality") Municipality municipality
     ) {
 
-        eUmzugClientService.newFeeOut(municipality.getMunicipalityId(), municipality.getFeeMoveOut());//Setzten der Wegzugsgebühr im Backend
+        eUmzugClientService.newFeeOut(municipality.getMunicipalityId(), municipality.getFeeMoveOut());//Setzten der WegzugsgebÃ¼hr im Backend Ã¼ber die ID und der neuen GebÃ¼hr
 
         return "redirect:/indexMunicipality";//Weiterleitung zur angegeben View
 
@@ -403,77 +429,82 @@ public class MainController {
 // ----------------------------------------------------------------------------------------------------------//
 // --------------------------------------------TransactionLog------------------------------------------------//
 // ----------------------------------------------------------------------------------------------------------//
-     /**
-     * 
-     * @param model
-     * @return 
+    /**
+     * Leitet auf die Ãœbersichtsseite der TransactionLogs
+     *
+     * @param model Wird automatisch von Spring mitgegeben
+     * @return Anzeige der angegebenen View
      */
     @RequestMapping(value = {"/indexTransactionLog"}, method = RequestMethod.GET)
-    public String getTransactionLog(Model model
-    ) {
-        return "indexTransactionLog";
+    public String getTransactionLog(Model model) {
+        return "indexTransactionLog"; //Laden der angegebenen View "indexTransactionLog"
     }
 
     /**
-     * 
-     * @param model
-     * @return 
+     * Leitet auf die View, um eine PersonenListe anhand eines Statuses zu
+     * finden
+     *
+     * @param model Wird automatisch von Spring mitgegeben
+     * @return Anzeige der angegebenen View
      */
     @RequestMapping(value = {"/getPersonListForStatus"}, method = RequestMethod.GET)
     public String showGetPersonListForStatusPage(Model model) {
 
         Status status = new Status(); //Instanzierung eines neuen Objekts
-        model.addAttribute("status", status);//Setzten der Gemeinde auf das Model, damit beispielsweise die View darauf zugreifen kann
+        model.addAttribute("status", status);//Setzten des Status auf das Model, damit beispielsweise die View darauf zugreifen kann
 
         return "getPersonListForStatus"; //Laden der angegebenen View "getPersonListForStatus"
     }
 
     /**
-     * 
-     * @param model
+     * Sucht die PersonenListe, welche einen gewissen Status haben
+     *
+     * @param model Wird automatisch von Spring mitgegeben
      * @param status
-     * @return 
+     * @return Anzeige der angegebenen View
      */
     @RequestMapping(value = {"/getPersonListForStatus"}, method = RequestMethod.POST)
     public String getPersonListForStatus(Model model, @ModelAttribute("status") Status status) {
 
-        List<Person> personenListe = eUmzugClientService.getPersonListForStatus(status.getName()); //Namen aus dem eUmzug auslesen
-        model.addAttribute("personenListe", personenListe); // Namen der Liste hinzufügen
+        List<Person> personenListe = eUmzugClientService.getPersonListForStatus(status.getName()); //PersonenListe anhand des Statuses um EUmzug auslesen
+        model.addAttribute("personenListe", personenListe); // Liste der View mitgeben
 
         return "getPersonListForStatus"; //Laden der angegebenen View "getPersonListForStatus"
     }
 
     /**
-     * 
-     * @param model
-     * @return 
+     * Leitet auf die View, um einen aktuellen Status fÃ¼r eine Person zu suchen
+     *
+     * @param model Wird automatisch von Spring mitgegeben
+     * @return Anzeige der angegebenen View
      */
     @RequestMapping(value = {"/getCurrentStatusForPerson"}, method = RequestMethod.GET)
     public String showGetCurrentStatusForPersonPage(Model model) {
 
         Person person = new Person(); //Instanzierung eines neuen Objekts
-        model.addAttribute("person", person); // Hinzufügen einer Person 
+        model.addAttribute("person", person); // HinzufÃ¼gen einer Person, damit beispielsweise die View darauf zugreifen kann
 
         TransactionLog transactionLog = new TransactionLog(); //Instanzierung eines neuen Objekts
         Status status = new Status(); //Instanzierung eines neuen Objekts
         transactionLog.setStatus(status); // Status setzen
         transactionLog.setPerson(person); // Person setzen
-        model.addAttribute("transactionLog", transactionLog); // Hinzufügen des Transaction Log
+        model.addAttribute("transactionLog", transactionLog); // HinzufÃ¼gen des Transaction Log, damit beispielsweise die View darauf zugreifen kann
 
         return "getCurrentStatusForPerson"; //Laden der angegebenen View "getCurrentStatusForPerson"
     }
 
     /**
-     * 
-     * @param model
+     * Sucht den aktuellen Status fÃ¼r eine Person
+     *
+     * @param model Wird automatisch von Spring mitgegeben
      * @param person
-     * @return 
+     * @return Anzeige der angegebenen View
      */
     @RequestMapping(value = {"/getCurrentStatusForPerson"}, method = RequestMethod.POST)
     public String getCurrentStatusForPerson(Model model, @ModelAttribute("person") Person person) {
 
-        TransactionLog transactionLog = eUmzugClientService.getCurrentStatusForPerson(person.getLocalPersonId());
-        model.addAttribute("transactionLog", transactionLog);
+        TransactionLog transactionLog = eUmzugClientService.getCurrentStatusForPerson(person.getLocalPersonId()); //Sucht den aktuellen Status fÃ¼r eine Person
+        model.addAttribute("transactionLog", transactionLog); //Setzten des TransactionLogs auf das Model, damit beispielsweise die View darauf zugreifen kann
 
         return "getCurrentStatusForPerson"; //Laden der angegebenen View "getCurrentStatusForPerson"
     }

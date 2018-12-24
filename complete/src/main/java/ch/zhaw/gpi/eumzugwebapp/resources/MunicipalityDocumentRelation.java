@@ -7,7 +7,7 @@ import java.io.Serializable;
  * 
  * Da weitere Attribute vorhanden sind, kann nicht @ManyToMany genutzt werden
  *
- * @author scep
+ * @author VZa02
  */
 public class MunicipalityDocumentRelation implements Serializable {
 

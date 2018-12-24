@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * Enitity-Klasse für Stammdaten zu einer politischen Gemeinde
  * 
- * @author scep
+ * @author VZa02
  */
 public class Municipality implements Serializable {
 

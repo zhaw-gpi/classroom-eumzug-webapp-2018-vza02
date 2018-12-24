@@ -6,7 +6,7 @@ import java.util.Date;
 /**
  * Enitity-Klasse für Stammdaten zu einer Person
  * 
- * @author scep
+ * @author VZa02
  */
 public class Person implements Serializable{
 
