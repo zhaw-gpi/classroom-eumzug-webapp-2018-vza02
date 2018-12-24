@@ -258,7 +258,7 @@ public class EUmzugClientService {
     }
 
     /**
-     * Zugugsgebühr wird erstellt über die angegebene ID und der angegebenen
+     * Zuzugugsgebühr wird erstellt über die angegebene ID und der angegebenen
      * Gebühr
      *
      * @param id Das ist die ID der Gemeinde
