@@ -30,29 +30,30 @@
                         <br/>
                         <input type="submit" value="Suchen" class="btn btn-primary"/>
                     </form>
+                    <br>
+                    <br>
+
+                    <table class="table table-striped">
+                        <tr>
+                            <th>ID</th>
+                            <th>Zeitstempel</th>
+                            <th>Status Name</th>
+                            <th>Status Beschrieb</th>
+                            <th>Personen ID</th>
+                        </tr>
+                        <tr>
+                            <td th:utext="${transactionLog.logId}">...</td>
+                            <td th:utext="${transactionLog.logTimeStamp}">...</td>
+                            <td th:utext="${transactionLog.status.name}">...</td>
+                            <td th:utext="${transactionLog.status.germanText}">...</td>
+                            <td th:utext="${transactionLog.person.localPersonId}">...</td>
+                        </tr>
+                    </table> 
                 </div>
-                <br>
-                <br>
-               <table class="table table-striped">
-                    <tr>
-                        <th>ID</th>
-                        <th>Zeitstempel</th>
-                        <th>Status Name</th>
-                        <th>Status Beschrieb</th>
-                        <th>Personen ID</th>
-                    </tr>
-                    <tr>
-                        <td th:utext="${transactionLog.logId}">...</td>
-                        <td th:utext="${transactionLog.logTimeStamp}">...</td>
-                        <td th:utext="${transactionLog.status.name}">...</td>
-                        <td th:utext="${transactionLog.status.germanText}">...</td>
-                        <td th:utext="${transactionLog.person.localPersonId}">...</td>
-                    </tr>
-                </table> 
+
 
             </div>
         </div>
-    </div>
-</body>
+   </body>
 </html>
 
